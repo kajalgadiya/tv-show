@@ -1,0 +1,25 @@
+.scrolling-wrapper {
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-align: center;
+    background: #78789c;
+}
+.card {
+    display: inline-block;
+    margin: 5px 10px 5px 10px;
+}
+.disabled{
+    pointer-events: none;
+    background-color: grey;
+}
+.pagination-btn{
+    display: inline;
+}
+.arrow-color{
+    color: white;
+    font-size: 20px;
+}
+.selected-genre{
+    background-color: green;;
+}

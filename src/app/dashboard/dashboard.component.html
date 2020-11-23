@@ -1,0 +1,17 @@
+<div class="scrolling-wrapper">
+    <div class="pagination-btn" (click)='genrePreviousClick()'>
+        <span class="fa fa-chevron-circle-left arrow-color" aria-hidden="true" [ngClass]="{
+            'disabled':(disablePrevClick == true)}"></span>
+    </div>
+    <div class="card"
+        *ngFor='let genre of uniqueGenreList | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage }'>
+        <button type="button" class="btn btn-light" (click)='selectedGenreBtn(genre)'
+        [ngClass]="{
+            'selected-genre':(selectedGenre == genre)}" 
+        >{{genre}}</button>
+    </div>
+    <div class='pagination-btn' (click)='genreNextClick()' [ngClass]="{
+        'disabled':(disableNextClick == true)}">
+        <span class="fa fa-chevron-circle-right arrow-color" aria-hidden="true"></span>
+    </div>
+</div>
