@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-loader',
-  templateUrl: './loader.component.html'
+  styleUrls: ['./loader.component.css'],
+  templateUrl: './loader.component.html',
 })
 export class LoaderComponent implements OnInit {
   constructor(private loaderService: LoaderService) { }

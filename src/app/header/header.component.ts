@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-  title = 'Tv Shows';
+  title = 'TV Shows';
 
   ngOnInit(): void {
   }
 
+  
 }

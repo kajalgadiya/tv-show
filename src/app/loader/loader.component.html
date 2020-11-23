@@ -1,4 +1,4 @@
-<button class="btn btn-primary loader-center" type="button" *ngIf="isLoading">
+<button class="btn btn-primary loader-center" type="button" *ngIf="isLoading | async">
     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
     Loading...
 </button>

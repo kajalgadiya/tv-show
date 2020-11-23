@@ -1,22 +1,40 @@
+<app-loader></app-loader>
+
 <div class="scrolling-wrapper">
-    <div class="pagination-btn" (click)='genrePreviousClick()'>
-        <span class="fa fa-chevron-circle-left arrow-color" aria-hidden="true" [ngClass]="{
-            'disabled':(disablePrevClick == true)}"></span>
+    <div class="pagination-btn" (click)='genrePreviousClick()' *ngIf='currentPage!=1'>
+        <span class="fa fa-chevron-circle-left pagination-left-arrow" aria-hidden="true"></span>
     </div>
     <div class="card"
         *ngFor='let genre of uniqueGenreList | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage }'>
-        <button type="button" class="btn btn-light" (click)='selectedGenreBtn(genre)' [ngClass]="{
+        <button type="button" class="btn btn-light common-btn-width" (click)='selectedGenreBtn(genre)' [ngClass]="{
             'selected-genre':(selectedGenre == genre)}">{{genre}}</button>
     </div>
-    <div class='pagination-btn' (click)='genreNextClick()' [ngClass]="{
-        'disabled':(disableNextClick == true)}">
-        <span class="fa fa-chevron-circle-right arrow-color" aria-hidden="true"></span>
+    <div class='pagination-btn' (click)='genreNextClick()' *ngIf='currentPage!=totalPages'>
+        <span class="fa fa-chevron-circle-right pagination-right-arrow" aria-hidden="true"></span>
     </div>
 </div>
 
-<div class="scrolling-shows">
-    <div class="d-flex flex-nowrap">
-        <ng-container *ngFor='let shows of selectedGenreTvShowsList;let index=index'>
+<div class="mT20">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-9">
+            <input class="form-control mr-sm-2" type="search" [(ngModel)]='searchedTerm' placeholder="Search TV Shows"
+                aria-label="Search" (keyup)='searchShows($event)'>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-info" (click)='search()'>Search</button>
+        </div>
+        <!-- <div class="col-sm-1"></div> -->
+    </div>
+</div>
+
+<div class="scrolling-shows" *ngIf='!isSearched'>
+    
+    <div class="d-flex flex-nowrap" style="margin-left: 100px;">
+        <!-- <div class="pagination-btn" (click)='prevShows()' *ngIf='currentShowPageValue!=1'>
+            <span class="fa fa-chevron-circle-left pagination-left-arrow" aria-hidden="true"></span>
+        </div> -->
+        <ng-container *ngFor='let shows of selectedGenreTvShowsList | paginate: { itemsPerPage: showsPerPage,currentPage: currentShowPageValue };let index=index'>
             <div class="order-{{index}} p-2">
                 <div class="card mT20 wP-100">
                     <img [src]="shows.image.medium" class="card-img-top" alt="No Preview Available">
@@ -24,8 +42,41 @@
                         <span class="fa fa-star rating" aria-hidden="true"></span>
                         <span class="pl-1">{{shows.rating.average}}</span>
                         <p class="card-text">
-                            <a href="#">
+                            <a target='_blank' href="{{shows.url}}">
                                 <span class="ellipsed" title="{{shows.name}}">{{shows.name}}</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!-- <div class='pagination-btn' (click)='nextShows()' *ngIf='currentShowPageValue!=totalPages'>
+            <span class="fa fa-chevron-circle-right pagination-right-arrow" aria-hidden="true"></span>
+        </div> -->
+    </div>
+    
+</div>
+
+<div class="scrolling-shows" *ngIf='isSearched'>
+    <div class="d-flex flex-nowrap">
+        <ng-container *ngFor='let shows of searchedTermTvShows;let index=index'>
+            <div class="order-{{index}} p-2">
+                <div class="card mT20 wP-100" *ngIf='shows.show.image!=null'>
+                    <ng-container *ngIf='shows.show.image!=null'>
+                        <img [src]="shows.show.image['medium']" class="card-img-top" alt="No Preview Available">
+                    </ng-container>
+                    <div class="card-body">
+                        <ng-container *ngIf='shows.show.rating.average !=null'>
+                            <span class="fa fa-star rating" aria-hidden="true"></span>
+                            <span class="pl-1">{{shows.show.rating.average}}</span>
+                        </ng-container>
+                        <ng-container *ngIf='shows.show.rating.average == null'>
+                            <span class="fa fa-star black-rating" aria-hidden="true"></span>
+                            <span class="pl-1">Rating Unavailable</span>
+                        </ng-container>
+                        <p class="card-text">
+                            <a target='_blank' href="{{shows.show.url}}">
+                                <span class="ellipsed" title="{{shows.show.name}}">{{shows.show.name}}</span>
                             </a>
                         </p>
                     </div>

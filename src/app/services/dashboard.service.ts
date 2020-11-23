@@ -18,4 +18,10 @@ export class DashboardService {
       .pipe(
         catchError(this.globalService.handleError));
   }
+
+  searchTvShows(searchedTerm): Observable<any> {
+    return this.httpClient.get<any[]>(`${this.globalService.serverUrl}search/shows?q=${searchedTerm}`)
+      .pipe(
+        catchError(this.globalService.handleError));
+  }
 }

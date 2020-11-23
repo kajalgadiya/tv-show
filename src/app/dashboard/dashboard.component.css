@@ -1,11 +1,13 @@
-.scrolling-wrapper {/* overflow-x: scroll; */overflow-y: hidden;white-space: nowrap;text-align: center;background: #78789c;}
+.scrolling-wrapper {overflow-y: hidden;white-space: nowrap;text-align: center;background: #ddddec;}
 .card {display: inline-block;margin: 5px 10px 5px 10px;}
-.disabled{pointer-events: none;background-color: grey;}
 .pagination-btn{display: inline;}
-.arrow-color{color: white;font-size: 20px;}
-.selected-genre{background-color: green;;}
-.scrolling-shows{overflow-y: hidden;white-space: nowrap;}
+.pagination-right-arrow{color:#392b73; font-size: 46px; margin-top: 2px;position: absolute;right: 10px;cursor: pointer;}
+.pagination-left-arrow{color: #392b73;font-size: 46px; margin-top: 2px;position: absolute;left: 10px;cursor: pointer;}
+.selected-genre{background-color: #9098d3;}
+.scrolling-shows{overflow-y: hidden;white-space: nowrap;text-align: center;}
 .rating{color:green;}
+.black-rating{color: black;}
 .wP-100 {width: 14rem; max-width: 100%;}
 .mT20 {margin-top: 20px;}
 .ellipsed {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;}
+.common-btn-width{width:150px;}
