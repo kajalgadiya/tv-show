@@ -1,16 +1,16 @@
 <app-loader></app-loader>
 
 <div class="scrolling-wrapper">
-    <div class="pagination-btn" (click)='genrePreviousClick()' *ngIf='currentPage!=1'>
-        <span class="fa fa-chevron-circle-left pagination-left-arrow" aria-hidden="true"></span>
+    <div class="pagination-btn" (click)='genrePreviousClick()' *ngIf='currentGenrePage!=1'>
+        <span class="fa fa-chevron-circle-left pagination-left-arrow mT8" aria-hidden="true"></span>
     </div>
     <div class="card"
-        *ngFor='let genre of uniqueGenreList | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage }'>
+        *ngFor='let genre of uniqueGenreList | paginate: { itemsPerPage: itemsPerPageGenre,currentPage: currentGenrePage }'>
         <button type="button" class="btn btn-light common-btn-width" (click)='selectedGenreBtn(genre)' [ngClass]="{
             'selected-genre':(selectedGenre == genre)}">{{genre}}</button>
     </div>
-    <div class='pagination-btn' (click)='genreNextClick()' *ngIf='currentPage!=totalPages'>
-        <span class="fa fa-chevron-circle-right pagination-right-arrow" aria-hidden="true"></span>
+    <div class='pagination-btn' (click)='genreNextClick()' *ngIf='currentGenrePage!=totalPages'>
+        <span class="fa fa-chevron-circle-right pagination-right-arrow mT8" aria-hidden="true"></span>
     </div>
 </div>
 
@@ -24,17 +24,16 @@
         <div class="col-sm-2">
             <button type="button" class="btn btn-info" (click)='search()'>Search</button>
         </div>
-        <!-- <div class="col-sm-1"></div> -->
     </div>
 </div>
 
 <div class="scrolling-shows" *ngIf='!isSearched'>
-    
-    <div class="d-flex flex-nowrap" style="margin-left: 100px;">
-        <!-- <div class="pagination-btn" (click)='prevShows()' *ngIf='currentShowPageValue!=1'>
+    <div class="d-flex flex-nowrap mL100">
+        <div class="d-flex align-items-center" (click)='prevShows()' *ngIf='currentShowPageValue!=1'>
             <span class="fa fa-chevron-circle-left pagination-left-arrow" aria-hidden="true"></span>
-        </div> -->
-        <ng-container *ngFor='let shows of selectedGenreTvShowsList | paginate: { itemsPerPage: showsPerPage,currentPage: currentShowPageValue };let index=index'>
+        </div>
+        <ng-container
+            *ngFor='let shows of selectedGenreTvShowsList | paginate: { itemsPerPage: showsPerPage,currentPage: currentShowPageValue };let index=index'>
             <div class="order-{{index}} p-2">
                 <div class="card mT20 wP-100">
                     <img [src]="shows.image.medium" class="card-img-top" alt="No Preview Available">
@@ -50,16 +49,19 @@
                 </div>
             </div>
         </ng-container>
-        <!-- <div class='pagination-btn' (click)='nextShows()' *ngIf='currentShowPageValue!=totalPages'>
+        <div class='d-flex align-items-center' (click)='nextShows()' *ngIf='currentShowPageValue!=totalShowsCount'>
             <span class="fa fa-chevron-circle-right pagination-right-arrow" aria-hidden="true"></span>
-        </div> -->
+        </div>
     </div>
-    
 </div>
 
 <div class="scrolling-shows" *ngIf='isSearched'>
-    <div class="d-flex flex-nowrap">
-        <ng-container *ngFor='let shows of searchedTermTvShows;let index=index'>
+    <div class="d-flex flex-nowrap mL100">
+        <div class="d-flex align-items-center" (click)='prevShows()' *ngIf='currentShowPageValue!=1'>
+            <span class="fa fa-chevron-circle-left pagination-left-arrow" aria-hidden="true"></span>
+        </div>
+        <ng-container
+            *ngFor='let shows of searchedTermTvShows | paginate: { itemsPerPage: showsPerPage,currentPage: currentShowPageValue };let index=index'>
             <div class="order-{{index}} p-2">
                 <div class="card mT20 wP-100" *ngIf='shows.show.image!=null'>
                     <ng-container *ngIf='shows.show.image!=null'>
@@ -83,5 +85,8 @@
                 </div>
             </div>
         </ng-container>
+        <div class='d-flex align-items-center' (click)='nextShows()' *ngIf='currentShowPageValue!=totalShowsCount'>
+            <span class="fa fa-chevron-circle-right pagination-right-arrow" aria-hidden="true"></span>
+        </div>
     </div>
 </div>

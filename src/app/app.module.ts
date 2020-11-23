@@ -8,7 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyHttpInterceptor } from './interceptor/http.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ShowDetailsComponent } from './show-details/show-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 
@@ -18,8 +17,7 @@ import { FormsModule } from '@angular/forms';
     PageNotFoundComponent,
     HeaderComponent,
     LoaderComponent,
-    DashboardComponent,
-    ShowDetailsComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

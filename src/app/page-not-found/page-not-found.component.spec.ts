@@ -23,6 +23,6 @@ describe('PageNotFoundComponent', () => {
   });
 
   it('should throw error Page Not Found if route is not configured', () => {
-    expect(component.notFoundMsg).toEqual('Oops!!Sorry, Requested page does not exist.');
+    expect(component.pageNotFoundMsg).toEqual('Sorry, Requested page does not exist.');
   });
 });

@@ -1,8 +1,8 @@
-.scrolling-wrapper {overflow-y: hidden;white-space: nowrap;text-align: center;background: #ddddec;}
-.card {display: inline-block;margin: 5px 10px 5px 10px;}
+.scrolling-wrapper {overflow-y: hidden;white-space: nowrap;text-align: center;background: #9f9fa9;}
+.card {display: inline-block;margin:10px;}
 .pagination-btn{display: inline;}
-.pagination-right-arrow{color:#392b73; font-size: 46px; margin-top: 2px;position: absolute;right: 10px;cursor: pointer;}
-.pagination-left-arrow{color: #392b73;font-size: 46px; margin-top: 2px;position: absolute;left: 10px;cursor: pointer;}
+.pagination-right-arrow{color:#575966fa; font-size: 46px; position: absolute;right: 10px;cursor: pointer; z-index: 99;}
+.pagination-left-arrow{color: #575966fa;font-size: 46px; position: absolute;left: 20px;cursor: pointer; z-index: 99;}
 .selected-genre{background-color: #9098d3;}
 .scrolling-shows{overflow-y: hidden;white-space: nowrap;text-align: center;}
 .rating{color:green;}
@@ -11,3 +11,5 @@
 .mT20 {margin-top: 20px;}
 .ellipsed {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;}
 .common-btn-width{width:150px;}
+.mL100{margin-left: 100px;}
+.mT8{margin-top:8px;}
