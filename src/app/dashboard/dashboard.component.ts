@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   totalPages;
   selectedGenreTvShowsList: any = [];
   selectedGenre;
-  
+
   ngOnInit(): void {
     this.getTvShowsData();
   }

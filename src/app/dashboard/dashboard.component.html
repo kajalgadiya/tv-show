@@ -5,13 +5,32 @@
     </div>
     <div class="card"
         *ngFor='let genre of uniqueGenreList | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage }'>
-        <button type="button" class="btn btn-light" (click)='selectedGenreBtn(genre)'
-        [ngClass]="{
-            'selected-genre':(selectedGenre == genre)}" 
-        >{{genre}}</button>
+        <button type="button" class="btn btn-light" (click)='selectedGenreBtn(genre)' [ngClass]="{
+            'selected-genre':(selectedGenre == genre)}">{{genre}}</button>
     </div>
     <div class='pagination-btn' (click)='genreNextClick()' [ngClass]="{
         'disabled':(disableNextClick == true)}">
         <span class="fa fa-chevron-circle-right arrow-color" aria-hidden="true"></span>
+    </div>
+</div>
+
+<div class="scrolling-shows">
+    <div class="d-flex flex-nowrap">
+        <ng-container *ngFor='let shows of selectedGenreTvShowsList;let index=index'>
+            <div class="order-{{index}} p-2">
+                <div class="card mT20 wP-100">
+                    <img [src]="shows.image.medium" class="card-img-top" alt="No Preview Available">
+                    <div class="card-body">
+                        <span class="fa fa-star rating" aria-hidden="true"></span>
+                        <span class="pl-1">{{shows.rating.average}}</span>
+                        <p class="card-text">
+                            <a href="#">
+                                <span class="ellipsed" title="{{shows.name}}">{{shows.name}}</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>

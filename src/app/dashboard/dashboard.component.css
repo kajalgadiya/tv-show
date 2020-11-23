@@ -1,25 +1,11 @@
-.scrolling-wrapper {
-    /* overflow-x: scroll; */
-    overflow-y: hidden;
-    white-space: nowrap;
-    text-align: center;
-    background: #78789c;
-}
-.card {
-    display: inline-block;
-    margin: 5px 10px 5px 10px;
-}
-.disabled{
-    pointer-events: none;
-    background-color: grey;
-}
-.pagination-btn{
-    display: inline;
-}
-.arrow-color{
-    color: white;
-    font-size: 20px;
-}
-.selected-genre{
-    background-color: green;;
-}
+.scrolling-wrapper {/* overflow-x: scroll; */overflow-y: hidden;white-space: nowrap;text-align: center;background: #78789c;}
+.card {display: inline-block;margin: 5px 10px 5px 10px;}
+.disabled{pointer-events: none;background-color: grey;}
+.pagination-btn{display: inline;}
+.arrow-color{color: white;font-size: 20px;}
+.selected-genre{background-color: green;;}
+.scrolling-shows{overflow-y: hidden;white-space: nowrap;}
+.rating{color:green;}
+.wP-100 {width: 14rem; max-width: 100%;}
+.mT20 {margin-top: 20px;}
+.ellipsed {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;}
