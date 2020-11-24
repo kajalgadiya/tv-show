@@ -5,13 +5,10 @@
 .pagination-left-arrow{color: #575966fa;font-size: 46px; position: absolute;left: 20px;cursor: pointer; z-index: 99;}
 .selected-genre{background-color: #9098d3;}
 .scrolling-shows{overflow-y: hidden;white-space: nowrap;text-align: center;}
-.rating{color:green;}
+
 .black-rating{color: black;}
 .wP-100 {width: 12rem !important; max-width: 100%;}
 .mT20 {margin-top: 20px;}
-.ellipsed {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;}
 .common-btn-width{width:150px;}
 .mL100{margin-left: 100px;}
 .mT8{margin-top:8px;}
-.custom-headers:before{background: #f5c518;border-radius: 4px;content: '';align-self: flex-start;position: absolute;height: 35px; width: 8px;margin-left: 12px;}
-.popular{margin-left:25px}

@@ -1,25 +1,13 @@
-.owl-theme .owl-nav .owl-next{
-    position: absolute;
-    width: 60px;
-    cursor: pointer;
-    right: 0px;
-    top: 150px !important;
-    font-size: 24px;
-    padding: 1.25rem .75rem !important;
-    background: #434141 !important;
+.owl-theme .owl-nav .owl-next{position: absolute; width: 60px;cursor: pointer;right: 0px;top: 150px !important;
+    font-size: 24px;padding: 1.25rem .75rem !important;background: #434141 !important;
 }
 
-.owl-theme .owl-nav .owl-prev{
-    position: absolute;
-    width: 60px;
-    cursor: pointer;
-    left: 0px;
-    top: 150px !important;
-    font-size: 24px;
-    background: #434141 !important;
-    padding: 1.25rem .75rem !important;
+.owl-theme .owl-nav .owl-prev{position: absolute;width: 60px;cursor: pointer;left: 0px;top: 150px !important;
+    font-size: 24px;background: #434141 !important;padding: 1.25rem .75rem !important;
 }
-
-.owl-carousel.owl-drag .owl-item {
-    width: 248px !important;
-}
+.owl-carousel.owl-drag .owl-item {width: 248px !important;}
+.hand{cursor: pointer;}
+.rating{color:green;}
+.custom-headers:before{background: #f5c518;border-radius: 4px;content: '';align-self: flex-start;position: absolute;height: 35px; width: 8px;margin-left: 12px;}
+.popular{margin-left:25px}
+.ellipsed {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;}

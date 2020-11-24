@@ -1,1 +1,113 @@
-Shows
+<div *ngIf='!loader'>
+    <!-- Show Information -->
+    <section class="mT20">
+        <ng-container *ngIf='showDetailsData==null || showDetailsData==undefined'>
+            <div class="d-flex justify-content-center mt-3">
+                <b>No Data Found.</b>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='showDetailsData!=null || showDetailsData!=undefined'>
+            <div class="d-flex flex-row">
+                <div class="p-2" *ngIf='showDetailsData.image!=null'>
+                    <img class="wP-100" [src]="showDetailsData.image.medium" alt="No Preview Available"
+                        [title]="showDetailsData.name">
+                </div>
+                <div class="p-2 no-preview" *ngIf='showDetailsData.image==null'>
+                    <div class="no-image">No Preview Available</div>
+                </div>
+                <div class="p-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{showDetailsData.name}}
+                                <ng-container
+                                    *ngIf='showDetailsData.rating.average!=null || showDetailsData.rating.average!=undefined'>
+                                    <span class="fa fa-star rating" aria-hidden="true"></span>
+                                    <span class="pl-1">{{showDetailsData.rating.average}}</span>
+                                </ng-container>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{showDetailsData.genres}}</h6>
+                            <p class="card-text card-overflow">{{showDetailsData.summary}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
+
+    <!-- Cast Display Section -->
+    <section class="mT20">
+        <h4 class="custom-headers">
+            <span class="popular">Photos</span>
+        </h4>
+        <ng-container *ngIf='castDetailsData.length==0'>
+            <div class="d-flex justify-content-center mt-3">
+                <b>No Photos Found For '{{showDetailsData.name}}'.</b>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='castDetailsData.length>0'>
+            <div class="container dashboard">
+                <div class="col-12 ">
+                    <div class="row">
+                        <ng-container *ngFor="let castImages of castDetailsData">
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <div class="card mT20">
+                                    <ng-container
+                                        *ngIf='castImages.person.image!=null || castImages.person.image !=undefined'>
+                                        <img class="card-img-top img-photos" [src]="castImages.person.image.medium"
+                                            alt="No Preview Available">
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf='castImages.person.image==null || castImages.person.image ==undefined'>
+                                        <div class="no-cast-image">Image Unavailable</div>
+                                    </ng-container>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <a target='_blank' href="{{castImages.person.url}}">
+                                                <span class="ellipsed"
+                                                    title="{{castImages.person.name}}">{{castImages.person.name}}</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
+
+    <!-- Seasons Display Section -->
+    <section class="mT20 mb-5">
+        <h4 class="custom-headers">
+            <span class="popular">Seasons</span>
+        </h4>
+        <ng-container *ngIf='seasonsDetailsData.length==0'>
+            <div class="d-flex justify-content-center mt-3">
+                <b>No Seasons Found For '{{showDetailsData.name}}'.</b>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='seasonsDetailsData.length>0'>
+            <div class="container dashboard">
+                <div class="col-12 ">
+                    <div class="row">
+                        <ng-container *ngFor="let seasonsData of seasonsDetailsData">
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <div class="card mT20 hand" (click)='seasonsNavigation(seasonsData)'>
+                                    <ng-container *ngIf='seasonsData.image!=null || seasonsData.image !=undefined'>
+                                        <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
+                                            alt="No Preview Available">
+                                    </ng-container>
+                                    <ng-container *ngIf='seasonsData.image==null || seasonsData.image ==undefined'>
+                                        <div class="no-cast-image">Image Unavailable</div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
+</div>

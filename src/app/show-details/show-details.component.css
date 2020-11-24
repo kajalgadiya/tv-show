@@ -1,0 +1,9 @@
+.card-overflow{max-height: 160px;overflow: auto;}
+.no-preview{border:1px solid rgba(0,0,0,.125);position: relative;width: 1200px;
+ display: flex;align-items: center;margin-top: 9px;text-align:center;border-radius: 5px;
+ height: 260px;max-height: 260px;}
+.no-image{position: absolute;background: #efffef;}
+.wP-100 {height: 218px;width: 200px;}
+.mT20 {margin-top: 20px;}
+.img-photos{height: 100%; width:100%;}
+.no-cast-image{ background: #efffef;text-align: center;margin-top: 50%;}

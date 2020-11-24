@@ -36,14 +36,14 @@
             <!-- <div class="mT20"> -->
                 <owl-carousel-o [options]="customOptions">
                     <ng-template carouselSlide *ngFor="let slide of fetchGenreResults(genre)" [id]="slide.id">
-                        <div class="card mT20 wP-100">
+                        <div class="card mT20 wP-100 hand" (click)='showDetails(slide.id)'>
                             <img class="wP-100" [src]="slide.image.medium" [alt]="" [title]="slide.name">
                             <div class="card-body">
                                 <span class="fa fa-star rating" aria-hidden="true"></span>
                                 <span class="pl-1">{{slide.rating.average}}</span> <span>/10</span>
-                                <a target='_blank' href="{{slide.url}}">
+                                <!-- <a target='_blank' href="{{slide.url}}"> -->
                                     <span class="ellipsed" title="{{slide.name}}">{{slide.name}}</span>
-                                </a>
+                                <!-- </a> -->
                             </div>
                         </div>
                     </ng-template>
