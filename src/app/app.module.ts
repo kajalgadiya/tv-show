@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyHttpInterceptor } from './interceptor/http.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShowDetialsComponent } from './show-details/show-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageNotFoundComponent,
     HeaderComponent,
     LoaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    ShowDetialsComponent
   ],
   imports: [
     BrowserModule,

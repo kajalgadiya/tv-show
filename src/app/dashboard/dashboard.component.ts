@@ -62,15 +62,17 @@ export class DashboardComponent implements OnInit {
       return this.allGenreList.indexOf(item) === index;
     });
     this.uniqueGenreList.unshift('Popular Shows');
-    this.genreSpecificTvShows();
+    // this.genreSpecificTvShows();
     // this.totalPages = Math.ceil(this.uniqueGenreList.length / this.itemsPerPageGenre);
     // this.showGenreOnLoad();
   }
 
-  showGenreOnLoad(): void {
+  // showGenreOnLoad(): void {
     // this.selectedGenre = this.uniqueGenreList[0];
     // this.loadGenreData();
-  }
+    // this.genreSpecificTvShows();
+
+  // }
 
   // selectedGenreBtn(genre): void {
   //   this.selectedGenre = genre;
@@ -83,21 +85,38 @@ export class DashboardComponent implements OnInit {
   //   // this.searchedTerm = '';
   // }
 
-  genreSpecificTvShows(): void {
-    // this.currentShowPageValue = 1;
+  // genreSpecificTvShows(): void {
+  //   // this.currentShowPageValue = 1;
 
-    console.log(this.uniqueGenreList,'this.uniqueGenreList');
+  //   console.log(this.uniqueGenreList,'this.uniqueGenreList');
     
-    // if (this.selectedGenre !== 'Popular Shows') {
-    //   this.selectedGenreTvShowsList = this.tvShowsList.filter(data => data.genres.includes(this.selectedGenre));
-    // } else {
-    //   this.selectedGenreTvShowsList = this.tvShowsList;
-    // }
-    // this.selectedGenreTvShowsList.sort((a, b) => (a.rating.average > b.rating.average) ? 1 : -1);
-    // this.selectedGenreTvShowsList = this.selectedGenreTvShowsList.reverse();
+  //   if (this.selectedGenre !== 'Popular Shows') {
+  //     console.log('if');
+      
+  //     this.selectedGenreTvShowsList = this.tvShowsList.filter(data => data.genres.includes(this.selectedGenre));
+  //   } else {
+  //     this.selectedGenreTvShowsList = this.tvShowsList;
+  //     console.log('else');
+      
+  //   }
+  //   this.selectedGenreTvShowsList.sort((a, b) => (a.rating.average > b.rating.average) ? 1 : -1);
+  //   this.selectedGenreTvShowsList = this.selectedGenreTvShowsList.reverse();
 
+  //   console.log(this.selectedGenreTvShowsList);
+  //   console.log(this.tvShowsList,'this.tvShowsList');
+    
+  //   // this.totalShowsCount = Math.ceil(this.selectedGenreTvShowsList.length / this.showsPerPage);
+  // }
 
-    // this.totalShowsCount = Math.ceil(this.selectedGenreTvShowsList.length / this.showsPerPage);
+  fetchGenreResults(genre){
+    if (genre !== 'Popular Shows') {
+      this.selectedGenreTvShowsList = this.tvShowsList.filter(data => data.genres.includes(genre));
+    } else {
+      this.selectedGenreTvShowsList = this.tvShowsList;
+    }
+    this.selectedGenreTvShowsList.sort((a, b) => (a.rating.average > b.rating.average) ? 1 : -1);
+    this.selectedGenreTvShowsList = this.selectedGenreTvShowsList.reverse();
+    return this.selectedGenreTvShowsList;
   }
 
   // searchShows(searchedKey): void {

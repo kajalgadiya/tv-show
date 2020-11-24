@@ -29,25 +29,30 @@
 
 <section>
     <div class="mT20">
-        <h4 class="custom-headers">
-            <span class="popular">Popular Shows</span></h4>
+        <ng-container *ngFor='let genre of uniqueGenreList'>
+            <h4 class="custom-headers">
+                <span class="popular">{{genre}}</span>
+            </h4>
+            <!-- <div class="mT20"> -->
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide *ngFor="let slide of fetchGenreResults(genre)" [id]="slide.id">
+                        <div class="card mT20 wP-100">
+                            <img class="wP-100" [src]="slide.image.medium" [alt]="" [title]="slide.name">
+                            <div class="card-body">
+                                <span class="fa fa-star rating" aria-hidden="true"></span>
+                                <span class="pl-1">{{slide.rating.average}}</span> <span>/10</span>
+                                <a target='_blank' href="{{slide.url}}">
+                                    <span class="ellipsed" title="{{slide.name}}">{{slide.name}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            <!-- </div> -->
+        </ng-container>
+
     </div>
-    <div class="mT20">
-        <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide *ngFor="let slide of selectedGenreTvShowsList" [id]="slide.id">
-                <div class="card mT20 wP-100">
-                    <img class="wP-100" [src]="slide.image.medium" [alt]="" [title]="slide.name">
-                    <div class="card-body">
-                        <span class="fa fa-star rating" aria-hidden="true"></span>
-                        <span class="pl-1">{{slide.rating.average}}</span> <span>/10</span>
-                        <a target='_blank' href="{{slide.url}}">
-                            <span class="ellipsed" title="{{slide.name}}">{{slide.name}}</span>
-                        </a>
-                    </div>
-                </div>
-            </ng-template>
-        </owl-carousel-o>
-    </div>
+
 </section>
 <!-- <div class="scrolling-shows" *ngIf='!isSearched'>
     <ng-container *ngIf='selectedGenreTvShowsList.length>0'>
