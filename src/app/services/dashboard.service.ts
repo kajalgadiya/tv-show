@@ -24,4 +24,5 @@ export class DashboardService {
       .pipe(
         catchError(this.globalService.handleError));
   }
+
 }

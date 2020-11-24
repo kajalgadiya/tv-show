@@ -12,23 +12,17 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService, private router: Router) { }
 
-  // currentGenrePage = 1;
   tvShowsList: any = [];
   allGenreList: any = [];
   uniqueGenreList: any = [];
-  // itemsPerPageGenre = 6;
-  // totalPages;
   selectedGenreTvShowsList: any = [];
   selectedGenre;
-  // searchedTerm;
-  // searchedTermTvShows: any = [];
-  // isSearched = false;
-  // showsPerPage = 5;
-  // currentShowPageValue = 1;
-  // totalShowsCount;
-
+  loadData = false;
+  searchedTerm;
+  searchedTermTvShows: any = [];
+  isSearched = false;
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -42,6 +36,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTvShowsData();
+    this.loadData = false;
   }
 
   getTvShowsData(): void {
@@ -63,108 +58,49 @@ export class DashboardComponent implements OnInit {
       return this.allGenreList.indexOf(item) === index;
     });
     this.uniqueGenreList.unshift('Popular Shows');
-    // this.genreSpecificTvShows();
-    // this.totalPages = Math.ceil(this.uniqueGenreList.length / this.itemsPerPageGenre);
-    // this.showGenreOnLoad();
+    this.genreSpecificTvShows();
   }
 
-  // showGenreOnLoad(): void {
-  // this.selectedGenre = this.uniqueGenreList[0];
-  // this.loadGenreData();
-  // this.genreSpecificTvShows();
+  genreSpecificTvShows(): void {
+    this.uniqueGenreList.forEach(genre => {
+      let genreSpecficShows = {
+        genreValue: genre,
+        genreData: []
+      }
+      if (genre !== 'Popular Shows') {
+        genreSpecficShows.genreData = this.tvShowsList.filter(data => data.genres.includes(genre));
+        genreSpecficShows.genreData = this.descendingRatingAverage(genreSpecficShows.genreData);
+      } else {
+        genreSpecficShows.genreData = this.tvShowsList;
+        genreSpecficShows.genreData = this.descendingRatingAverage(genreSpecficShows.genreData);
+      }
+      this.selectedGenreTvShowsList.push(genreSpecficShows);
+    });
+    this.loadData = true;
+  }
 
-  // }
+  descendingRatingAverage(data) {
+    data.sort((value1, value2) => (value1.rating.average > value2.rating.average) ? 1 : -1);
+    data = data.reverse();
+    return data;
+  }
+  searchShows(searchedKey): void {
+    this.searchedTerm = searchedKey.target.value;
+  }
 
-  // selectedGenreBtn(genre): void {
-  //   this.selectedGenre = genre;
-  //   this.loadGenreData();
-  // }
-
-  // loadGenreData(): void {
-  //   this.genreSpecificTvShows();
-  //   // this.isSearched = false;
-  //   // this.searchedTerm = '';
-  // }
-
-  // genreSpecificTvShows(): void {
-  //   // this.currentShowPageValue = 1;
-
-  //   console.log(this.uniqueGenreList,'this.uniqueGenreList');
-
-  //   if (this.selectedGenre !== 'Popular Shows') {
-  //     console.log('if');
-
-  //     this.selectedGenreTvShowsList = this.tvShowsList.filter(data => data.genres.includes(this.selectedGenre));
-  //   } else {
-  //     this.selectedGenreTvShowsList = this.tvShowsList;
-  //     console.log('else');
-
-  //   }
-  //   this.selectedGenreTvShowsList.sort((a, b) => (a.rating.average > b.rating.average) ? 1 : -1);
-  //   this.selectedGenreTvShowsList = this.selectedGenreTvShowsList.reverse();
-
-  //   console.log(this.selectedGenreTvShowsList);
-  //   console.log(this.tvShowsList,'this.tvShowsList');
-
-  //   // this.totalShowsCount = Math.ceil(this.selectedGenreTvShowsList.length / this.showsPerPage);
-  // }
-
-  fetchGenreResults(genre) {
-    if (genre !== 'Popular Shows') {
-      this.selectedGenreTvShowsList = this.tvShowsList.filter(data => data.genres.includes(genre));
+  triggerSearch(): void {
+    this.loadData = false;
+    if (this.searchedTerm.trim() == null || this.searchedTerm.trim() == '' || this.searchedTerm == undefined) {
+      this.isSearched = false;
+      this.loadData = true;
     } else {
-      this.selectedGenreTvShowsList = this.tvShowsList;
+      this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
+        this.searchedTermTvShows = data;
+        this.isSearched = true;
+        this.loadData = true;
+      });
     }
-    this.selectedGenreTvShowsList.sort((a, b) => (a.rating.average > b.rating.average) ? 1 : -1);
-    this.selectedGenreTvShowsList = this.selectedGenreTvShowsList.reverse();
-    return this.selectedGenreTvShowsList;
   }
-
-  // searchShows(searchedKey): void {
-  //   this.searchedTerm = searchedKey.target.value;
-  // }
-
-  // search(): void {
-  //   this.currentShowPageValue = 1;
-  //   this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
-  //     this.searchedTermTvShows = data;
-  //     this.selectedGenre = 'Popular Shows';
-  //     this.isSearched = true;
-  //   });
-  //   this.totalShowsCount = Math.ceil(this.searchedTermTvShows.length / this.showsPerPage);
-  // }
-
-  // genreNextClick(): void {
-  //   if (this.currentGenrePage < this.totalPages) {
-  //     this.currentGenrePage = this.currentGenrePage + 1;
-  //   }
-  //   this.currentShowPageValue = 1;
-  //   const nextGenreIndex = (this.currentGenrePage * this.itemsPerPageGenre) - this.itemsPerPageGenre;
-  //   this.selectedGenre = this.uniqueGenreList[nextGenreIndex];
-  //   this.loadGenreData();
-  // }
-
-  // nextShows(): void {
-  //   if (this.currentShowPageValue < this.totalShowsCount) {
-  //     this.currentShowPageValue = this.currentShowPageValue + 1;
-  //   }
-  // }
-
-  // genrePreviousClick(): void {
-  //   if (this.currentGenrePage > 1) {
-  //     this.currentGenrePage = this.currentGenrePage - 1;
-  //   }
-  //   this.currentShowPageValue = 1;
-  //   const prevGenreIndex = (this.currentGenrePage * this.itemsPerPageGenre) - this.itemsPerPageGenre;
-  //   this.selectedGenre = this.uniqueGenreList[prevGenreIndex];
-  //   this.loadGenreData();
-  // }
-
-  // prevShows(): void {
-  //   if (this.currentShowPageValue > 1) {
-  //     this.currentShowPageValue = this.currentShowPageValue - 1;
-  //   }
-  // }
 
   showDetails(showId) {
     this.router.navigate([`shows/${showId}`]);

@@ -1,14 +1,6 @@
-.scrolling-wrapper {overflow-y: hidden;white-space: nowrap;text-align: center;background: #9f9fa9;}
 .card {display: inline-block;margin:10px;}
-.pagination-btn{display: inline;}
-.pagination-right-arrow{color:#575966fa; font-size: 46px; position: absolute;right: 10px;cursor: pointer; z-index: 99;}
-.pagination-left-arrow{color: #575966fa;font-size: 46px; position: absolute;left: 20px;cursor: pointer; z-index: 99;}
-.selected-genre{background-color: #9098d3;}
-.scrolling-shows{overflow-y: hidden;white-space: nowrap;text-align: center;}
-
 .black-rating{color: black;}
 .wP-100 {width: 12rem !important; max-width: 100%;}
 .mT20 {margin-top: 20px;}
-.common-btn-width{width:150px;}
-.mL100{margin-left: 100px;}
-.mT8{margin-top:8px;}
+.no-genre-image{text-align: center;height: 170px;padding-top: 50%;}
+.no-genre-image-search{text-align: center;height: 266px;padding-top: 50%;}
