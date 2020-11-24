@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     FormsModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule.forRoot([])
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true }],
   bootstrap: [AppComponent]

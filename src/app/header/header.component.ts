@@ -11,15 +11,4 @@ export class HeaderComponent implements OnInit {
   title = 'TV Maze';
   ngOnInit(): void {
   }
-
-  openCloseDiv() {
-    let collapsibleDiv = document.getElementById('navbarTogglerDemo01');
-    if (collapsibleDiv.classList.contains('collapse')) {
-      collapsibleDiv.classList.remove("collapse");
-      collapsibleDiv.classList.add("collapsed");
-    } else {
-      collapsibleDiv.classList.add("collapse");
-      collapsibleDiv.classList.remove("collapsed");
-    }
-  }
 }

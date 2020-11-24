@@ -94,12 +94,18 @@ export class DashboardComponent implements OnInit {
       this.isSearched = false;
       this.loadData = true;
     } else {
-      this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
-        this.searchedTermTvShows = data;
-        this.isSearched = true;
-        this.loadData = true;
-      });
+      this.searchedResults();
     }
+  }
+
+  searchedResults() {
+    console.log(this.searchedTerm);
+    
+    this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
+      this.searchedTermTvShows = data;
+      this.isSearched = true;
+      this.loadData = true;
+    });
   }
 
   showDetails(showId) {
