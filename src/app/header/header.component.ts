@@ -31,7 +31,13 @@ export class HeaderComponent implements OnInit {
   }
 
   valueSearched(event) {
-    this.searchedTerm = event.target.value
+    this.searchedTerm = event.target.value;
+    // this.search();
+  }
+
+  setSearchValue(){
+    this.searchedTerm = '';
+    this.search()
   }
 
   search() {
@@ -41,6 +47,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.dashboardService.setSearchedValue(this.searchedTerm);
       this.hideSearch = false;
+      
     }
   }
 

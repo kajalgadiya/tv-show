@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { LoaderService } from '../services/loader.service';
@@ -23,23 +23,25 @@ export class DashboardComponent implements OnInit {
   searchedTermTvShows: any = [];
   isSearched = false;
   customOptions: OwlOptions = {
+    items: 6,
     loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
     navSpeed: 500,
+    dots: false,
     navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
-    autoplay: false,
     nav: true
   }
+  isShow: boolean;
+  topPosToStartShowing = 100;
 
   ngOnInit(): void {
     this.getTvShowsData();
     this.dashboardService.getSearchedValue().subscribe(value => {
       this.searchedTerm = value;
       this.triggerSearch();
-    })
+    });
   }
 
   getTvShowsData(): void {
@@ -80,7 +82,6 @@ export class DashboardComponent implements OnInit {
       this.selectedGenreTvShowsList.push(genreSpecficShows);
     });
     this.loadData = true;
-    this.loaderService.hide();
   }
 
   descendingRatingAverage(data) {
@@ -93,8 +94,7 @@ export class DashboardComponent implements OnInit {
     this.loadData = false;
     if (this.searchedTerm.trim() == null || this.searchedTerm.trim() == '' || this.searchedTerm == undefined) {
       this.isSearched = false;
-      this.loadData = true;
-      this.loaderService.hide();
+      setTimeout(() => this.loadData = true, 500);
     } else {
       this.searchedResults();
     }
@@ -105,7 +105,25 @@ export class DashboardComponent implements OnInit {
       this.searchedTermTvShows = data;
       this.isSearched = true;
       this.loadData = true;
-      this.loaderService.hide();
+    });
+  }
+
+
+  @HostListener('window:scroll')
+  checkScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (scrollPosition >= this.topPosToStartShowing) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  }
+
+  gotoTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
 }

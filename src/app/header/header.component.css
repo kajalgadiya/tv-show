@@ -1,4 +1,3 @@
 .nav-color{background-color: #112b45!important;}
 .white{color:#fff;}
-/* .mright-50{margin-right: 50px;}
-.mleft-50{margin-left: 50px;} */
+.fixed-top{overflow: hidden;background-color: white;position: fixed;top: 0;width: 100%;}

@@ -8,3 +8,7 @@
 .img-photos{height: 100%; width:100%;}
 .no-cast-image{height: 140px;text-align: center;margin-top: 50%;}
 .summary-info{height: 295px;width: 100%;max-height: 295px;min-height: 295px;}
+.ml-10{margin-left:10px;}
+.scroll-top-btn {position: fixed;z-index: 99;border: none;background-color: #343a40;
+    color: white;cursor: pointer;padding: 15px; bottom: 5px;right: 5px;
+    font-size: 20px;text-align: center;border-radius: 5px;outline: none;}

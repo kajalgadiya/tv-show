@@ -13,7 +13,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
     this.loaderService.show();
     return next.handle(request).pipe(
       finalize(() => {
-        // this.loaderService.hide();
+        this.loaderService.hide();
       }
       ),
       catchError((error: HttpErrorResponse) => {
@@ -25,8 +25,8 @@ export class MyHttpInterceptor implements HttpInterceptor {
           // server-side error
           errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
-        window.alert(errorMessage);
-        this.router.navigate(['']);
+        // window.alert(errorMessage);
+        this.router.navigate(['**']);
         return throwError(errorMessage);
       }));
   }
