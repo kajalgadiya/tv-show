@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DashboardService } from '../services/dashboard.service';
 import { LoaderService } from '../services/loader.service';
 import { ShowDetailsService } from '../services/show-details.service';
 
@@ -11,7 +12,7 @@ import { ShowDetailsService } from '../services/show-details.service';
 export class ShowDetialsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private showDetailsService: ShowDetailsService,
-    private loaderService: LoaderService) { }
+    private loaderService: LoaderService, private dashboardService: DashboardService) { }
   selectedShowId: number;
   showDetailsData: any;
   loader = true;
@@ -22,6 +23,7 @@ export class ShowDetialsComponent implements OnInit {
     this.loader = true;
     this.selectedShowId = this.route.snapshot.params.id;
     this.loadShowsData();
+    this.dashboardService.setIsSearchedFlag(true);
   }
 
   loadShowsData() {

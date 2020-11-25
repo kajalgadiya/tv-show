@@ -1,9 +1,29 @@
-<nav class="navbar navbar-expand-lg nav-color">
-    <a class="navbar-brand white" routerLink="">
-        <i class="fa fa-television" aria-hidden="true"></i>
-        <span> {{title}}</span>
-    </a>
-    <a class="navbar-brand white" routerLink="">
-        <span>Dashboard</span>
-    </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <span class=""> -->
+        <a class="navbar-brand white mleft-50" routerLink="">
+            <i class="fa fa-television" aria-hidden="true"></i>
+            <span> {{title}}</span>
+        </a>
+        <button class="navbar-toggler mright-50" type="button" data-toggle="collapse" (click)='openCloseDiv()'
+            data-target="#navbarTogglerId" aria-controls="navbarTogglerId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  mright-50" id="navbarTogglerId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <span (click)='showHideSearch()'>
+                        <a class="navbar-brand white" routerLink="">
+                            <span>Dashboard</span>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" *ngIf='!hideSearch'>
+                <input class="form-control mr-sm-2" autocomplete="off" type="search" name='search'
+                    [(ngModel)]='searchedTerm' (keyup)='valueSearched($event)' placeholder="Search" aria-label="Search">
+                <button class="btn btn-light my-2 my-sm-0" (click)='search()' type="submit">Search</button>
+            </form>
+        </div>
+    <!-- </span> -->
 </nav>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { GlobalService } from './global.service';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { GlobalService } from './global.service';
 })
 
 export class DashboardService {
+
+  private searchedKey = new Subject<any>();
+  private showHideSearchBtn = new Subject<any>();
 
   constructor(private httpClient: HttpClient, private globalService: GlobalService) { }
 
@@ -20,4 +23,18 @@ export class DashboardService {
     return this.httpClient.get<any[]>(`${this.globalService.serverUrl}search/shows?q=${searchedTerm}`);
   }
 
+  setSearchedValue(message: string) {
+    this.searchedKey.next(message);
+  }
+
+  getSearchedValue(): Observable<any> {
+    return this.searchedKey.asObservable();
+  }
+
+  setIsSearchedFlag(message: boolean) {
+    this.showHideSearchBtn.next(message);
+  }
+  getIsSearchedFlag(): Observable<any> {
+    return this.showHideSearchBtn.asObservable();
+  }
 }

@@ -36,6 +36,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTvShowsData();
+    this.dashboardService.getSearchedValue().subscribe(value => {
+      this.searchedTerm = value;
+      this.triggerSearch();
+    })
   }
 
   getTvShowsData(): void {
@@ -83,9 +87,6 @@ export class DashboardComponent implements OnInit {
     data.sort((value1, value2) => (value1.rating.average > value2.rating.average) ? 1 : -1);
     data = data.reverse();
     return data;
-  }
-  searchShows(searchedKey): void {
-    this.searchedTerm = searchedKey.target.value;
   }
 
   triggerSearch(): void {
