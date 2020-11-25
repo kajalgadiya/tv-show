@@ -31,7 +31,7 @@
                             <div class="card mT20 wP-100 hand">
                                 <ng-container *ngIf='slide.image!=null || slide.image !=undefined'>
                                     <img class="wP-100" [src]="slide.image.medium" [alt]="" [title]="slide.name"
-                                        (click)='showDetails(slide.id)'>
+                                        [routerLink]="['/shows', slide.id]">
                                 </ng-container>
                                 <ng-container *ngIf='slide.image==null || slide.image ==undefined'>
                                     <div class="no-genre-image">Image Unavailable</div>
@@ -39,7 +39,7 @@
                                 <div class="card-body">
                                     <ng-container *ngIf='slide.rating.average ==null'>
                                         <span class="fa fa-star black-rating" aria-hidden="true"></span>
-                                        <span class="pl-1">Unavailable</span>
+                                        <span class="pl-1">N/A</span>
                                     </ng-container>
                                     <ng-container *ngIf='slide.rating.average!= null'>
                                         <span class="fa fa-star rating" aria-hidden="true"></span>
@@ -73,7 +73,7 @@
                         <div class="card mT20 wP-100 hand">
                             <ng-container *ngIf='slide.show.image!=null || slide.show.image !=undefined'>
                                 <img class="wP-100" [src]="slide.show.image.medium" [alt]="" [title]="slide.show.name"
-                                    (click)='showDetails(slide.show.id)'>
+                                    [routerLink]="['/shows', slide.show.id]">
                             </ng-container>
                             <ng-container *ngIf='slide.show.image==null || slide.show.image ==undefined'>
                                 <div class="no-genre-image-search">Image Unavailable</div>
@@ -85,7 +85,7 @@
                                 </ng-container>
                                 <ng-container *ngIf='slide.show.rating.average == null'>
                                     <span class="fa fa-star black-rating" aria-hidden="true"></span>
-                                    <span class="pl-1">Unavailable</span>
+                                    <span class="pl-1">N/A</span>
                                 </ng-container>
                                 <a target='_blank' href="{{slide.show.url}}">
                                     <span class="ellipsed" title="{{slide.show.name}}">{{slide.show.name}}</span>

@@ -106,17 +106,76 @@ describe('DashboardComponent', () => {
   });
 
 
-  // it('should get searched results from the searched value', () => {
-  //   component.searchedTerm = 'Thrones';
-  //   component.triggerSearch();
-  //   const response1 = []
-  //   spyOn(dashboardService, 'searchTvShows').withArgs(component.searchedTerm).and.returnValue(of(response1));
-  //   expect(component.isSearched).toEqual(true);
-  //   expect(component.loadData).toEqual(true);
-  // });
+  it('should call searchedResults and return list of searchedTermTvShows', fakeAsync(() => {
+    component.searchedTerm = 'Got';
+    component.triggerSearch();
+    const searchedResults = [
+      {
+        "score": 12.24291,
+        "show": {
+          "id": 6187,
+          "url": "http://www.tvmaze.com/shows/6187/arabs-got-talent",
+          "name": "Arabs Got Talent",
+          "type": "Reality",
+          "language": "Arabic",
+          "genres": [],
+          "status": "Running",
+          "runtime": 60,
+          "premiered": "2011-01-15",
+          "officialSite": "http://www.mbc.net/ar/programs/arabs-got-talent-s3.html",
+          "schedule": {
+            "time": "20:00",
+            "days": [
+              "Saturday"
+            ]
+          },
+          "rating": {
+            "average": null
+          },
+          "weight": 0,
+          "network": {
+            "id": 425,
+            "name": "MBC 4",
+            "country": {
+              "name": "United Arab Emirates",
+              "code": "AE",
+              "timezone": "Asia/Dubai"
+            }
+          },
+          "webChannel": null,
+          "externals": {
+            "tvrage": null,
+            "thetvdb": 258122,
+            "imdb": null
+          },
+          "image": {
+            "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/23/59765.jpg",
+            "original": "http://static.tvmaze.com/uploads/images/original_untouched/23/59765.jpg"
+          },
+          "summary": "",
+          "updated": 1574388907,
+          "_links": {
+            "self": {
+              "href": "http://api.tvmaze.com/shows/6187"
+            },
+            "previousepisode": {
+              "href": "http://api.tvmaze.com/episodes/1695749"
+            }
+          }
+        }
+      }
+    ]
+    spyOn(dashboardService, 'searchTvShows').withArgs(component.searchedTerm).and.returnValue(of(searchedResults));
+    component.searchedResults();
+    expect(component.searchedTermTvShows).toEqual(searchedResults);
+    expect(component.isSearched).toEqual(true);
+    expect(component.loadData).toEqual(true);
+  }));
 
-  // it('should call showDetails based on selected show id', fakeAsync(() => {
-  //   let showId = 10;
-  //   component.showDetails(showId);
-  // }));
+  it('sorts in descending order by default', function () {
+    let data = [{rating:{average:2}},{rating:{average:9}},{rating:{average:5}},{rating:{average:8}}];
+    component.descendingRatingAverage(data);
+    let sortedOutput = [{rating:{average:9}},{rating:{average:8}},{rating:{average:5}},{rating:{average:2}}];
+    expect(data).toEqual(sortedOutput);
+  });
 });

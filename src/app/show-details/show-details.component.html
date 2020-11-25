@@ -94,7 +94,7 @@
                     <div class="row">
                         <ng-container *ngFor="let seasonsData of seasonsDetailsData">
                             <div class="col-6 col-sm-6 col-md-2">
-                                <div class="card mT20 hand" (click)='seasonsNavigation(seasonsData)'>
+                                <div class="card mT20 hand">
                                     <ng-container *ngIf='seasonsData.image!=null || seasonsData.image !=undefined'>
                                         <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
                                             alt="No Preview Available">

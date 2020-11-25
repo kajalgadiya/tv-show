@@ -12,7 +12,4 @@ export class GlobalService {
 
   serverUrl = 'http://api.tvmaze.com/';
 
-  handleError(error: HttpErrorResponse): any {
-    return throwError(error);
-  }
 }

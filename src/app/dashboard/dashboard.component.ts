@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService, private router: Router) { }
@@ -27,10 +28,9 @@ export class DashboardComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
+    navSpeed: 500,
     navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
     autoplay: false,
-    responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 940: { items: 5 } },
     nav: true
   }
 
@@ -99,16 +99,10 @@ export class DashboardComponent implements OnInit {
   }
 
   searchedResults() {
-    console.log(this.searchedTerm);
-    
     this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
       this.searchedTermTvShows = data;
       this.isSearched = true;
       this.loadData = true;
     });
-  }
-
-  showDetails(showId) {
-    this.router.navigate([`shows/${showId}`]);
   }
 }

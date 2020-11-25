@@ -37,7 +37,7 @@ export class ShowDetialsComponent implements OnInit {
     });
   }
 
-  seasonsNavigation(seasonsData) {
-    window.open(seasonsData['url'], '_blank');
-  }
+  // seasonsNavigation(seasonsData) {
+  //  window.open(seasonsData['url'], '_blank');
+  // }
 }
