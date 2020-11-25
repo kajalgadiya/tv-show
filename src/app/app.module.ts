@@ -9,11 +9,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MyHttpInterceptor } from './interceptor/http.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShowDetialsComponent } from './show-details/show-details.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,11 +26,9 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule,
     FormsModule,
     BrowserAnimationsModule,
-    CarouselModule,
-    RouterModule.forRoot([])
+    CarouselModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true }],
   bootstrap: [AppComponent]

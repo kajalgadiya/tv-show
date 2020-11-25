@@ -12,7 +12,10 @@ export class MyHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show();
     return next.handle(request).pipe(
-      finalize(() => this.loaderService.hide()),
+      finalize(() => {
+        // this.loaderService.hide();
+      }
+      ),
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

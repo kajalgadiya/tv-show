@@ -1,7 +1,7 @@
 <app-loader></app-loader>
-<section *ngIf='loadData'>
 
-    <div class="mT20">
+<section *ngIf='loadData'>
+    <div class="mtop-20">
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-9">
@@ -15,7 +15,7 @@
     </div>
 
     <ng-container *ngIf='!isSearched'>
-        <div class="mT20 mb-1">
+        <div class="mtop-20 mb-1">
             <ng-container *ngIf='selectedGenreTvShowsList.length==0'>
                 <div class="d-flex justify-content-center mt-3">
                     <b>No Data Found.</b>
@@ -23,18 +23,19 @@
             </ng-container>
             <ng-container *ngIf='selectedGenreTvShowsList.length>0'>
                 <ng-container *ngFor='let genreInfo of selectedGenreTvShowsList'>
-                    <h4 class="custom-headers" style="margin-top:50px">
+                    <h4 class="custom-headers mtop-50">
                         <span class="popular">{{genreInfo.genreValue}}</span>
                     </h4>
                     <owl-carousel-o [options]="customOptions">
                         <ng-template carouselSlide *ngFor="let slide of genreInfo.genreData" [id]="slide.id">
-                            <div class="card mT20 wP-100 hand">
+                            <div class="card mtop-20 wp-100 hand">
                                 <ng-container *ngIf='slide.image!=null || slide.image !=undefined'>
-                                    <img class="wP-100" [src]="slide.image.medium" [alt]="" [title]="slide.name"
+                                    <img class="wp-100" [src]="slide.image.medium" [alt]="" [title]="slide.name"
                                         [routerLink]="['/shows', slide.id]">
                                 </ng-container>
                                 <ng-container *ngIf='slide.image==null || slide.image ==undefined'>
-                                    <div class="no-genre-image">Image Unavailable</div>
+                                    <div class="no-genre-image" [routerLink]="['/shows', slide.show.id]">Image
+                                        Unavailable</div>
                                 </ng-container>
                                 <div class="card-body">
                                     <ng-container *ngIf='slide.rating.average ==null'>
@@ -58,7 +59,7 @@
     </ng-container>
 
     <ng-container *ngIf='isSearched'>
-        <div class="mT20 mb-1">
+        <div class="mtop-20 mb-1">
             <h4 class="custom-headers">
                 <span class="popular">Searched Results</span>
             </h4>
@@ -70,13 +71,14 @@
             <ng-container *ngIf='searchedTermTvShows.length>0'>
                 <owl-carousel-o [options]="customOptions">
                     <ng-template carouselSlide *ngFor="let slide of searchedTermTvShows" [id]="slide.show.id">
-                        <div class="card mT20 wP-100 hand">
+                        <div class="card mtop-20 wp-100 hand">
                             <ng-container *ngIf='slide.show.image!=null || slide.show.image !=undefined'>
-                                <img class="wP-100" [src]="slide.show.image.medium" [alt]="" [title]="slide.show.name"
+                                <img class="wp-100" [src]="slide.show.image.medium" [alt]="" [title]="slide.show.name"
                                     [routerLink]="['/shows', slide.show.id]">
                             </ng-container>
                             <ng-container *ngIf='slide.show.image==null || slide.show.image ==undefined'>
-                                <div class="no-genre-image-search">Image Unavailable</div>
+                                <div class="no-genre-image-search" [routerLink]="['/shows', slide.show.id]">Image
+                                    Unavailable</div>
                             </ng-container>
                             <div class="card-body">
                                 <ng-container *ngIf='slide.show.rating.average !=null'>

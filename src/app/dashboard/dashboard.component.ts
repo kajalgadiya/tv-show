@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class DashboardComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService, private router: Router) { }
+  constructor(private dashboardService: DashboardService, private loaderService: LoaderService) { }
 
   tvShowsList: any = [];
   allGenreList: any = [];
@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTvShowsData();
-    this.loadData = false;
   }
 
   getTvShowsData(): void {
@@ -77,6 +76,7 @@ export class DashboardComponent implements OnInit {
       this.selectedGenreTvShowsList.push(genreSpecficShows);
     });
     this.loadData = true;
+    this.loaderService.hide();
   }
 
   descendingRatingAverage(data) {
@@ -93,6 +93,7 @@ export class DashboardComponent implements OnInit {
     if (this.searchedTerm.trim() == null || this.searchedTerm.trim() == '' || this.searchedTerm == undefined) {
       this.isSearched = false;
       this.loadData = true;
+      this.loaderService.hide();
     } else {
       this.searchedResults();
     }
@@ -103,6 +104,7 @@ export class DashboardComponent implements OnInit {
       this.searchedTermTvShows = data;
       this.isSearched = true;
       this.loadData = true;
+      this.loaderService.hide();
     });
   }
 }

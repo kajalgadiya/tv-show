@@ -1,33 +1,39 @@
+<app-loader></app-loader>
+
 <div *ngIf='!loader'>
     <!-- Show Information -->
-    <section class="mT20">
+    <section class="mtop-20">
         <ng-container *ngIf='showDetailsData==null || showDetailsData==undefined'>
             <div class="d-flex justify-content-center mt-3">
                 <b>No Data Found.</b>
             </div>
         </ng-container>
         <ng-container *ngIf='showDetailsData!=null || showDetailsData!=undefined'>
-            <div class="d-flex flex-row">
-                <div class="p-2" *ngIf='showDetailsData.image!=null'>
-                    <img class="wP-100" [src]="showDetailsData.image.medium" alt="No Preview Available"
-                        [title]="showDetailsData.name">
-                </div>
-                <div class="p-2 no-preview" *ngIf='showDetailsData.image==null'>
-                    <div class="no-image">No Preview Available</div>
-                </div>
-                <div class="p-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{showDetailsData.name}}
-                                <ng-container
-                                    *ngIf='showDetailsData.rating.average!=null || showDetailsData.rating.average!=undefined'>
-                                    <span class="fa fa-star rating" aria-hidden="true"></span>
-                                    <span class="pl-1">{{showDetailsData.rating.average}}</span>
-                                </ng-container>
-                            </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{showDetailsData.genres}}</h6>
-                            <p class="card-text card-overflow">{{showDetailsData.summary}}</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div *ngIf='showDetailsData.image!=null'>
+                            <img class="summary-info" [src]="showDetailsData.image.medium" alt="No Preview Available"
+                                [title]="showDetailsData.name">
+                        </div>
+                        <div class="no-preview" *ngIf='showDetailsData.image==null'>
+                            <div class="no-image">No Preview Available</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="card summary-info">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {{showDetailsData.name}}
+                                    <ng-container
+                                        *ngIf='showDetailsData.rating.average!=null || showDetailsData.rating.average!=undefined'>
+                                        <span class="fa fa-star rating" aria-hidden="true"></span>
+                                        <span class="pl-1">{{showDetailsData.rating.average}}</span>
+                                    </ng-container>
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{showDetailsData.genres}}</h6>
+                                <p class="card-text card-overflow">{{showDetailsData.summary}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,8 +42,8 @@
     </section>
 
     <!-- Cast Display Section -->
-    <section class="mT20">
-        <h4 class="custom-headers">
+    <section class="mtop-20">
+        <h4 class="custom-headers mtop-50">
             <span class="popular">Photos</span>
         </h4>
         <ng-container *ngIf='castDetailsData.length==0'>
@@ -50,8 +56,8 @@
                 <div class="col-12 ">
                     <div class="row">
                         <ng-container *ngFor="let castImages of castDetailsData">
-                            <div class="col-6 col-sm-6 col-md-2">
-                                <div class="card mT20">
+                            <div class="col-sm-6 col-md-2">
+                                <div class="card mtop-20">
                                     <ng-container
                                         *ngIf='castImages.person.image!=null || castImages.person.image !=undefined'>
                                         <img class="card-img-top img-photos" [src]="castImages.person.image.medium"
@@ -79,8 +85,8 @@
     </section>
 
     <!-- Seasons Display Section -->
-    <section class="mT20 mb-5">
-        <h4 class="custom-headers">
+    <section class="mtop-20 mb-5">
+        <h4 class="custom-headers mtop-50">
             <span class="popular">Seasons</span>
         </h4>
         <ng-container *ngIf='seasonsDetailsData.length==0'>
@@ -93,14 +99,18 @@
                 <div class="col-12 ">
                     <div class="row">
                         <ng-container *ngFor="let seasonsData of seasonsDetailsData">
-                            <div class="col-6 col-sm-6 col-md-2">
-                                <div class="card mT20 hand">
+                            <div class="col-sm-6 col-md-2">
+                                <div class="card mtop-20 hand">
                                     <ng-container *ngIf='seasonsData.image!=null || seasonsData.image !=undefined'>
-                                        <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
-                                            alt="No Preview Available">
+                                        <a href="{{seasonsData.url}}" target="_blank">
+                                            <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
+                                                alt="No Preview Available">
+                                        </a>
                                     </ng-container>
                                     <ng-container *ngIf='seasonsData.image==null || seasonsData.image ==undefined'>
-                                        <div class="no-cast-image">Image Unavailable</div>
+                                        <div class="no-cast-image">
+                                            <a href="{{seasonsData.url}}" target="_blank">Image Unavailable</a>
+                                        </div>
                                     </ng-container>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 .card {display: inline-block;margin:10px;}
 .black-rating{color: black;}
-.wP-100 {width: 12rem !important; max-width: 100%;}
-.mT20 {margin-top: 20px;}
+.wp-100 {width: 12rem !important; max-width: 100%;}
+.mtop-20 {margin-top: 20px;}
 .no-genre-image{text-align: center;height: 170px;padding-top: 50%;}
 .no-genre-image-search{text-align: center;height: 266px;padding-top: 50%;}
