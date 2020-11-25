@@ -29,5 +29,4 @@ describe('ShowDetailsService', () => {
     expect(service).toBeTruthy();
   });
 
-
 });

@@ -16,6 +16,7 @@ export class ShowDetailsService {
     return this.httpClient.get<any[]>(`${this.globalService.serverUrl}shows/${showId}?embed=cast`);
   }
 
+  // get Tv Shows Seasons Infomation based on Show Id
   getTvShowsSeasonsInfo(showId): Observable<any> {
     return this.httpClient.get<any[]>(`${this.globalService.serverUrl}shows/${showId}/seasons`);
   }

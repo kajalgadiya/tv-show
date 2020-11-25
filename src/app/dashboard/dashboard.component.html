@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center mtop-80" *ngIf="!loadData">
-    <button class="btn btn-primary" type="button" >
+    <button class="btn btn-primary" type="button">
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
         Loading...
-      </button>
+    </button>
 </div>
 
 <section *ngIf='loadData'>
@@ -16,7 +16,8 @@
                 </ng-container>
                 <ng-container *ngIf='selectedGenreTvShowsList.length>0'>
                     <ng-container *ngFor='let genreInfo of selectedGenreTvShowsList'>
-                        <h4 class="custom-headers mtop-50" [ngClass]="{'top-100':genreInfo.genreValue === 'Popular Shows'}">
+                        <h4 class="custom-headers mtop-50"
+                            [ngClass]="{'top-100':genreInfo.genreValue === 'Popular Shows'}">
                             <span class="popular">{{genreInfo.genreValue}}</span>
                         </h4>
                         <owl-carousel-o [options]="customOptions">
@@ -94,5 +95,3 @@
         </ng-container>
     </div>
 </section>
-
-<button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()" title="Go to top">Top</button>

@@ -5,6 +5,3 @@
 .no-genre-image{text-align: center;height: 170px;padding-top: 50%;}
 .no-genre-image-search{text-align: center;height: 266px;padding-top: 50%;}
 .top-100{margin-top:100px;}
-.scroll-top-btn {position: fixed;z-index: 99;border: none;background-color: #343a40;
-    color: white;cursor: pointer;padding: 15px; bottom: 5px;right: 5px;
-    font-size: 20px;text-align: center;border-radius: 5px;outline: none;}

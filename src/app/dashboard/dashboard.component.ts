@@ -1,7 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +10,7 @@ import { LoaderService } from '../services/loader.service';
 
 export class DashboardComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService, private loaderService: LoaderService) { }
+  constructor(private dashboardService: DashboardService) { }
 
   tvShowsList: any = [];
   allGenreList: any = [];
@@ -33,8 +32,6 @@ export class DashboardComponent implements OnInit {
     navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
     nav: true
   }
-  isShow: boolean;
-  topPosToStartShowing = 100;
 
   ngOnInit(): void {
     this.getTvShowsData();
@@ -44,6 +41,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // get list of all tv shows fetched
   getTvShowsData(): void {
     this.dashboardService.getTvShowsInformation().subscribe(data => {
       this.tvShowsList = data;
@@ -51,6 +49,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // create list of all genres available in tvShowsList
   getGenreInfo(): void {
     this.tvShowsList.forEach(element => {
       this.allGenreList = this.allGenreList.concat(element.genres);
@@ -58,6 +57,7 @@ export class DashboardComponent implements OnInit {
     this.removeDuplicateGenre();
   }
 
+  // remove all duplicate genres
   removeDuplicateGenre(): void {
     this.uniqueGenreList = this.allGenreList.filter((item, index) => {
       return this.allGenreList.indexOf(item) === index;
@@ -66,6 +66,7 @@ export class DashboardComponent implements OnInit {
     this.genreSpecificTvShows();
   }
 
+  // cretae genre and respective genre data dynamically
   genreSpecificTvShows(): void {
     this.uniqueGenreList.forEach(genre => {
       let genreSpecficShows = {
@@ -84,12 +85,14 @@ export class DashboardComponent implements OnInit {
     this.loadData = true;
   }
 
-  descendingRatingAverage(data) {
+  // sort genre data based on average rating in descending order
+  descendingRatingAverage(data): any {
     data.sort((value1, value2) => (value1.rating.average > value2.rating.average) ? 1 : -1);
     data = data.reverse();
     return data;
   }
 
+  // identifies if search api needs to be called or not
   triggerSearch(): void {
     this.loadData = false;
     if (this.searchedTerm.trim() == null || this.searchedTerm.trim() == '' || this.searchedTerm == undefined) {
@@ -100,30 +103,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  searchedResults() {
+  // get searched results based on search value
+  searchedResults(): void {
     this.dashboardService.searchTvShows(this.searchedTerm).subscribe(data => {
       this.searchedTermTvShows = data;
       this.isSearched = true;
       this.loadData = true;
-    });
-  }
-
-
-  @HostListener('window:scroll')
-  checkScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    if (scrollPosition >= this.topPosToStartShowing) {
-      this.isShow = true;
-    } else {
-      this.isShow = false;
-    }
-  }
-
-  gotoTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
     });
   }
 }

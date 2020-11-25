@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { of } from 'rxjs';
 import { DashboardService } from '../services/dashboard.service';
@@ -92,20 +92,6 @@ describe('DashboardComponent', () => {
     expect(component.tvShowsList).toEqual(response);
   }));
 
-  it('should set searched TV Show Value', () => {
-    const event = { target: { value: 'Thrones' } };
-    fixture.componentInstance.searchShows(event);
-    expect(fixture.componentInstance.searchedTerm).toEqual('Thrones');
-  });
-
-  it('should get searched results from the searched value', () => {
-    component.searchedTerm = '';
-    component.triggerSearch();
-    expect(component.isSearched).toEqual(false);
-    expect(component.loadData).toEqual(true);
-  });
-
-
   it('should call searchedResults and return list of searchedTermTvShows', fakeAsync(() => {
     component.searchedTerm = 'Got';
     component.triggerSearch();
@@ -172,10 +158,30 @@ describe('DashboardComponent', () => {
     expect(component.loadData).toEqual(true);
   }));
 
-  it('sorts in descending order by default', function () {
-    let data = [{rating:{average:2}},{rating:{average:9}},{rating:{average:5}},{rating:{average:8}}];
+  it('sorts average rating in descending order', function () {
+    let data = [{ rating: { average: 2 } }, { rating: { average: 9 } }, { rating: { average: 5 } }, { rating: { average: 8 } }];
     component.descendingRatingAverage(data);
-    let sortedOutput = [{rating:{average:9}},{rating:{average:8}},{rating:{average:5}},{rating:{average:2}}];
+    let sortedOutput = [{ rating: { average: 9 } }, { rating: { average: 8 } }, { rating: { average: 5 } }, { rating: { average: 2 } }];
     expect(data).toEqual(sortedOutput);
   });
+
+  it('should call getSearchedValue to fetch latest searched Value', fakeAsync(() => {
+    component.ngOnInit();
+    let searchedData = 'Thrones';
+    component.searchedTerm = 'Thrones';
+    spyOn(dashboardService, 'getSearchedValue').and.returnValue(of(searchedData));
+    component.triggerSearch();
+    expect(component.searchedTerm).toEqual(searchedData);
+  }));
+
+  it('should get load page without any search results', fakeAsync(() => {
+    component.searchedTerm = '';
+    component.triggerSearch();
+    tick(500);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.isSearched).toEqual(false);
+      expect(component.loadData).toBe(true);
+    })
+  }));
 });

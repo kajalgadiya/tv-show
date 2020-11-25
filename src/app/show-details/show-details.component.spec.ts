@@ -13,7 +13,7 @@ describe('ShowDetialsComponent', () => {
   const mockActivatedRoute = {
     snapshot: {
       params: {
-        id: 'aMockId'
+        id: 'showId'
       }
     }
   };
@@ -104,11 +104,38 @@ describe('ShowDetialsComponent', () => {
     expect(component.seasonsDetailsData).toEqual(response);
   }));
 
-  // it('should call seasonsNavigation based on selected season id', fakeAsync(() => {
-  //   let seasonsData = {
-  //     "id": 800,
-  //     "url": "http://www.tvmaze.com/seasons/800/firefly-season-1"
-  //   }
-  //   component.seasonsNavigation(seasonsData);
-  // }));
+  it('should set summary value for summary key not found in response', () => {
+    component.showDetailsData = [
+      {
+        "id": 800,
+        "url": "http://www.tvmaze.com/seasons/800/firefly-season-1",
+        "number": 1,
+        "name": "",
+        "episodeOrder": 14,
+        "premiereDate": "2002-09-20",
+        "endDate": "2002-12-20",
+        "network": {
+          "id": 4,
+          "name": "FOX",
+          "country": {
+            "name": "United States",
+            "code": "US",
+            "timezone": "America/New_York"
+          }
+        },
+        "webChannel": null,
+        "image": {
+          "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/9/23969.jpg",
+          "original": "http://static.tvmaze.com/uploads/images/original_untouched/9/23969.jpg"
+        },
+        "_links": {
+          "self": {
+            "href": "http://api.tvmaze.com/seasons/800"
+          }
+        }
+      }
+    ]
+    component.removeHTMLTagsFromSummary();
+    expect(component.showDetailsData.summary.trim()).toEqual('Summary Is unavailable.');
+  });
 });

@@ -38,4 +38,12 @@ describe('DashboardService', () => {
     // Assert that the request is a GET.
     expect(req.request.method).toEqual('GET');
   });
+
+  it('should call setSearchedValue to set searchedKey value', () => {
+    service.searchedKey.subscribe((message) => {
+      expect(message).toBe('Thrones');
+    })
+    service.setSearchedValue('Thrones');
+  });
+
 });

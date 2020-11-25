@@ -1,3 +1,6 @@
 .nav-color{background-color: #112b45!important;}
 .white{color:#fff;}
 .fixed-top{overflow: hidden;background-color: white;position: fixed;top: 0;width: 100%;}
+.scroll-top-btn {position: fixed;z-index: 99;border: none;background-color: #343a40;
+    color: white;cursor: pointer;padding: 15px; bottom: 5px;right: 5px;
+    font-size: 20px;text-align: center;border-radius: 5px;outline: none;}

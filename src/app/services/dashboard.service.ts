@@ -9,8 +9,8 @@ import { GlobalService } from './global.service';
 
 export class DashboardService {
 
-  private searchedKey = new Subject<any>();
-  private showHideSearchBtn = new Subject<any>();
+  searchedKey = new Subject<any>();
+  showHideSearchBtn = new Subject<any>();
 
   constructor(private httpClient: HttpClient, private globalService: GlobalService) { }
 
@@ -19,21 +19,27 @@ export class DashboardService {
     return this.httpClient.get<any[]>(`${this.globalService.serverUrl}shows`);
   }
 
+  // get searched TV Show information
   searchTvShows(searchedTerm): Observable<any> {
     return this.httpClient.get<any[]>(`${this.globalService.serverUrl}search/shows?q=${searchedTerm}`);
   }
 
-  setSearchedValue(message: string) {
+  // set the searched value
+  setSearchedValue(message: string): any {
     this.searchedKey.next(message);
   }
 
+  // get the searched value
   getSearchedValue(): Observable<any> {
     return this.searchedKey.asObservable();
   }
 
-  setIsSearchedFlag(message: boolean) {
+  // set search button to show/hide
+  setIsSearchedFlag(message: boolean): any {
     this.showHideSearchBtn.next(message);
   }
+
+  // get search button to show/hide
   getIsSearchedFlag(): Observable<any> {
     return this.showHideSearchBtn.asObservable();
   }

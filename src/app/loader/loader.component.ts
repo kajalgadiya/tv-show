@@ -10,5 +10,4 @@ import { Subject } from 'rxjs';
 export class LoaderComponent {
   constructor(private loaderService: LoaderService) { }
   isLoading: Subject<boolean> = this.loaderService.isLoading;
-
 }
