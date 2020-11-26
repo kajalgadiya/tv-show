@@ -41,8 +41,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-
   // get list of all tv shows fetched
   getTvShowsData(): void {
     this.dashboardService.getTvShowsInformation().subscribe(data => {

@@ -36,9 +36,9 @@ describe('HeaderComponent', () => {
 
   it('should show hide top button on window scroll on each page', () => {
     component.scrollPosition = 0;
-    component.topPosToStartShowing = 150;
+    component.topPositionToShowScrollBtn = 150;
     window.dispatchEvent(new Event('scroll'));
-    expect(component.isShow).toEqual(false);
+    expect(component.showScrollTopBtn).toEqual(false);
   });
 
   it('should contian collapsed as classList for navbar toggler', () => {

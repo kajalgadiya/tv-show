@@ -10,7 +10,7 @@
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse  mright-50" id="navbarTogglerId">
+    <div class="collapse navbar-collapse mright-50" id="navbarTogglerId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <span (click)='showHideSearch()'>
@@ -32,4 +32,4 @@
     </div>
 </nav>
 
-<button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()" title="Go to top">Top</button>
+<button *ngIf="showScrollTopBtn" class="scroll-top-btn" (click)="gotoTop()" title="Go to top">Top</button>

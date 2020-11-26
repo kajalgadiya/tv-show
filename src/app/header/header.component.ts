@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   title = 'TV Maze';
   searchedTerm = '';
   hideSearch = false;
-  isShow: boolean;
-  topPosToStartShowing = 100;
+  showScrollTopBtn: boolean;
+  topPositionToShowScrollBtn = 100;
   scrollPosition;
 
   ngOnInit(): void {
@@ -63,10 +63,10 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:scroll')
   checkScroll(): void {
     this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    if (this.scrollPosition >= this.topPosToStartShowing) {
-      this.isShow = true;
+    if (this.scrollPosition >= this.topPositionToShowScrollBtn) {
+      this.showScrollTopBtn = true;
     } else {
-      this.isShow = false;
+      this.showScrollTopBtn = false;
     }
   }
 
