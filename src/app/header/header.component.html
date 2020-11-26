@@ -20,11 +20,15 @@
                 </span>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" *ngIf='!hideSearch'>
-            <input class="form-control mr-sm-2" autocomplete="off" type="text" name='search' [(ngModel)]='searchedTerm'
-                (keyup)='valueSearched($event)' placeholder="Search TV Show" aria-label="Search">
-            <button class="btn btn-light my-2 my-sm-0" (click)='search()' type="submit">Search</button>
-        </form>
+        <div class="input-group " *ngIf='!hideSearch'>
+            <input class="form-control" type="search" autocomplete="off" placeholder="Search TV Shows"
+                [(ngModel)]='searchedTerm' (keyup)='valueSearched($event)' id="search">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary search-icon" type="button" (click)='search()'>
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
     </div>
 </nav>
 

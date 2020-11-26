@@ -4,3 +4,5 @@
 .scroll-top-btn {position: fixed;z-index: 99;border: none;background-color: #343a40;
     color: white;cursor: pointer;padding: 15px; bottom: 5px;right: 5px;
     font-size: 20px;text-align: center;border-radius: 5px;outline: none;}
+.form-control:focus {outline: 0 !important;border-color: initial; box-shadow: none;}
+.search-icon{border-color: #fff;color:#fff}
