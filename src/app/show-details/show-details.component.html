@@ -17,7 +17,7 @@
             <ng-container *ngIf='showDetailsData!=null || showDetailsData!=undefined'>
                 <div class="ml-10">
                     <div class="row">
-                        <div class="col-sm-3 hand zoom">
+                        <div class="col-sm-2 hand zoom">
                             <div *ngIf='showDetailsData.image!=null'>
                                 <a href="{{showDetailsData.url}}" target="_blank">
                                     <img class="summary-info" [src]="showDetailsData.image.medium"
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="card summary-info">
                                 <div class="card-body">
                                     <h5 class="card-title">
