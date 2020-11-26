@@ -43,7 +43,7 @@ describe('HeaderComponent', () => {
 
   it('should contian collapsed as classList for navbar toggler', () => {
     component.openCloseDiv();
-    const navToggerId = document.getElementById("navbarTogglerId");
+    const navToggerId = document.getElementById('navbarTogglerId');
     const navToggelerClassList = navToggerId.classList;
     expect(navToggelerClassList).toContain('collapsed');
     expect(navToggelerClassList).not.toContain('collapse');
@@ -51,10 +51,10 @@ describe('HeaderComponent', () => {
 
   it('should contian collapse as classList for navbar toggler', () => {
     component.openCloseDiv();
-    const navToggerCollapseId = document.getElementById("navbarTogglerId");
+    const navToggerCollapseId = document.getElementById('navbarTogglerId');
     const navToggelerClassList1 = navToggerCollapseId.classList;
-    navToggelerClassList1.add("collapse");
-    navToggelerClassList1.remove("collapsed");
+    navToggelerClassList1.add('collapse');
+    navToggelerClassList1.remove('collapsed');
     expect(navToggelerClassList1).toContain('collapse');
     expect(navToggelerClassList1).not.toContain('collapsed');
   });

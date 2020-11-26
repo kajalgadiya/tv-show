@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     pullDrag: true,
     navSpeed: 500,
     dots: false,
-    navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+    navText: [`<i class='fa fa-chevron-left'></i>`, `<i class='fa fa-chevron-right'></i>`],
     nav: true
   }
 

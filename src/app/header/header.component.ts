@@ -27,11 +27,11 @@ export class HeaderComponent implements OnInit {
   openCloseDiv(): void {
     let collapsibleDiv = document.getElementById('navbarTogglerId');
     if (collapsibleDiv.classList.contains('collapse')) {
-      collapsibleDiv.classList.remove("collapse");
-      collapsibleDiv.classList.add("collapsed");
+      collapsibleDiv.classList.remove('collapse');
+      collapsibleDiv.classList.add('collapsed');
     } else {
-      collapsibleDiv.classList.add("collapse");
-      collapsibleDiv.classList.remove("collapsed");
+      collapsibleDiv.classList.add('collapse');
+      collapsibleDiv.classList.remove('collapsed');
     }
   }
 

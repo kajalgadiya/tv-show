@@ -29,7 +29,7 @@ export class ShowDetialsComponent implements OnInit {
   loadShowsData(): void {
     this.showDetailsService.getTvShowsInformation(this.selectedShowId).subscribe(data => {
       this.showDetailsData = data;
-      this.castDetailsData = this.showDetailsData['_embedded']['cast'];
+      this.castDetailsData = this.showDetailsData._embedded.cast;
       this.removeHTMLTagsFromSummary();
       this.loadShowsSeasons();
     });
@@ -37,10 +37,10 @@ export class ShowDetialsComponent implements OnInit {
 
   // remove HTML Tags from summary information
   removeHTMLTagsFromSummary(): void {
-    if (this.showDetailsData.summary != null && this.showDetailsData.summary != undefined) {
+    if (this.showDetailsData.summary !== null && this.showDetailsData.summary !== undefined) {
       this.showDetailsData.summary = this.showDetailsData.summary.replace(/(<([^>]+)>)/ig, '');
     } else {
-      this.showDetailsData.summary = "Summary Is unavailable.";
+      this.showDetailsData.summary = 'Summary Is unavailable.';
     }
   }
 
