@@ -34,12 +34,6 @@ describe('HeaderComponent', () => {
     expect(fixture.componentInstance.searchedTerm).toEqual('Thrones');
   });
 
-  it('should set searched TV Show Value as Blank when setSearchValue is called', () => {
-    component.searchedTerm = '';
-    fixture.componentInstance.setSearchValue();
-    expect(fixture.componentInstance.searchedTerm).toEqual('');
-  });
-
   it('should show hide top button on window scroll on each page', () => {
     component.scrollPosition = 0;
     component.topPosToStartShowing = 150;

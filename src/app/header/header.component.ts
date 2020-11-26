@@ -41,12 +41,6 @@ export class HeaderComponent implements OnInit {
     if (event.keyCode === 13) { this.search(); }
   }
 
-  // set searched value as blank
-  setSearchValue(): void {
-    this.searchedTerm = '';
-    this.search();
-  }
-
   // set the searched key value to be fetched in dashboard page
   search(): void {
     let pathName = window.location.pathname;
@@ -63,7 +57,7 @@ export class HeaderComponent implements OnInit {
     this.searchedTerm = '';
     this.search();
   }
-  
+
   // detects window scroll
   // show hide top button on scroll position
   @HostListener('window:scroll')
