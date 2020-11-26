@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
   // fetch searched value from input box
   valueSearched(event): void {
     this.searchedTerm = event.target.value;
+    if (event.keyCode === 13) { this.search(); }
   }
 
   // set searched value as blank
@@ -60,14 +61,9 @@ export class HeaderComponent implements OnInit {
   // show/hide search based on routes 
   showHideSearch(): void {
     this.searchedTerm = '';
-    let pathName = window.location.pathname;
-    if (pathName.includes('shows')) {
-      this.hideSearch = true;
-    } else {
-      this.hideSearch = false;
-    }
+    this.search();
   }
-
+  
   // detects window scroll
   // show hide top button on scroll position
   @HostListener('window:scroll')

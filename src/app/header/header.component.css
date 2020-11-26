@@ -6,3 +6,4 @@
     font-size: 20px;text-align: center;border-radius: 5px;outline: none;}
 .form-control:focus {outline: 0 !important;border-color: initial; box-shadow: none;}
 .search-icon{border-color: #fff;color:#fff}
+.auto-width{width: auto !important;}

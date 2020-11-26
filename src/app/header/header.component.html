@@ -20,8 +20,8 @@
                 </span>
             </li>
         </ul>
-        <div class="input-group " *ngIf='!hideSearch'>
-            <input class="form-control" type="search" autocomplete="off" placeholder="Search TV Shows"
+        <div class="input-group auto-width" *ngIf='!hideSearch'>
+            <input class="form-control" type="text" autocomplete="off" placeholder="Search TV Shows"
                 value='{{searchedTerm}}' (keyup)='valueSearched($event)' id="search">
             <span class="input-group-append">
                 <button class="btn btn-outline-secondary search-icon" type="button" (click)='search()'>

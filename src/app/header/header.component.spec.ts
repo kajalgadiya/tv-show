@@ -64,4 +64,11 @@ describe('HeaderComponent', () => {
     expect(navToggelerClassList1).toContain('collapse');
     expect(navToggelerClassList1).not.toContain('collapsed');
   });
+
+  it('should set searched TV Show Value', () => {
+    const event = { target: { value: 'Thrones' }, keyCode: 13 };
+    fixture.componentInstance.valueSearched(event);
+    expect(fixture.componentInstance.searchedTerm).toEqual('Thrones');
+    expect(fixture.componentInstance.hideSearch).toEqual(false);
+  });
 });
