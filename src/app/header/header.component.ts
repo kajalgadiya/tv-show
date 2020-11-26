@@ -8,7 +8,7 @@ import { DashboardService } from '../services/dashboard.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService,) { }
+  constructor(private dashboardService: DashboardService) { }
   title = 'TV Maze';
   searchedTerm = '';
   hideSearch = false;
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   // show/hide toggler based on device width
   openCloseDiv(): void {
-    let collapsibleDiv = document.getElementById('navbarTogglerId');
+    const collapsibleDiv = document.getElementById('navbarTogglerId');
     if (collapsibleDiv.classList.contains('collapse')) {
       collapsibleDiv.classList.remove('collapse');
       collapsibleDiv.classList.add('collapsed');
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
 
   // set the searched key value to be fetched in dashboard page
   search(): void {
-    let pathName = window.location.pathname;
+    const pathName = window.location.pathname;
     if (pathName.includes('shows')) {
       this.hideSearch = true;
     } else {
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  // show/hide search based on routes 
+  // show/hide search based on routes
   showHideSearch(): void {
     this.searchedTerm = '';
     this.search();

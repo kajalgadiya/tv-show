@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
     dots: false,
     navText: [`<i class='fa fa-chevron-left'></i>`, `<i class='fa fa-chevron-right'></i>`],
     nav: true
-  }
+  };
 
   ngOnInit(): void {
     this.getTvShowsData();
@@ -69,10 +69,10 @@ export class DashboardComponent implements OnInit {
   // cretae genre and respective genre data dynamically
   genreSpecificTvShows(): void {
     this.uniqueGenreList.forEach(genre => {
-      let genreSpecficShows = {
+      const genreSpecficShows = {
         genreValue: genre,
         genreData: []
-      }
+      };
       if (genre !== 'Popular Shows') {
         genreSpecficShows.genreData = this.tvShowsList.filter(data => data.genres.includes(genre));
         genreSpecficShows.genreData = this.descendingRatingAverage(genreSpecficShows.genreData);
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
   // identifies if search api needs to be called or not
   triggerSearch(): void {
     this.loadData = false;
-    if (this.searchedTerm.trim() == null || this.searchedTerm.trim() == '' || this.searchedTerm == undefined) {
+    if (this.searchedTerm.trim() === null || this.searchedTerm.trim() === '' || this.searchedTerm === undefined) {
       this.isSearched = false;
       setTimeout(() => this.loadData = true, 500);
     } else {

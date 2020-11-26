@@ -158,16 +158,16 @@ describe('DashboardComponent', () => {
     expect(component.loadData).toEqual(true);
   }));
 
-  it('sorts average rating in descending order', function () {
-    let data = [{ rating: { average: 2 } }, { rating: { average: 9 } }, { rating: { average: 5 } }, { rating: { average: 8 } }];
+  it('sorts average rating in descending order', () => {
+    const data = [{ rating: { average: 2 } }, { rating: { average: 9 } }, { rating: { average: 5 } }, { rating: { average: 8 } }];
     component.descendingRatingAverage(data);
-    let sortedOutput = [{ rating: { average: 9 } }, { rating: { average: 8 } }, { rating: { average: 5 } }, { rating: { average: 2 } }];
+    const sortedOutput = [{ rating: { average: 9 } }, { rating: { average: 8 } }, { rating: { average: 5 } }, { rating: { average: 2 } }];
     expect(data).toEqual(sortedOutput);
   });
 
   it('should call getSearchedValue to fetch latest searched Value', fakeAsync(() => {
     component.ngOnInit();
-    let searchedData = 'Thrones';
+    const searchedData = 'Thrones';
     component.searchedTerm = 'Thrones';
     spyOn(dashboardService, 'getSearchedValue').and.returnValue(of(searchedData));
     component.triggerSearch();

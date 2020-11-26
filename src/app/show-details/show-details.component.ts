@@ -10,8 +10,7 @@ import { ShowDetailsService } from '../services/show-details.service';
 })
 export class ShowDetialsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private showDetailsService: ShowDetailsService,
-    private dashboardService: DashboardService) { }
+  constructor(private route: ActivatedRoute, private showDetailsService: ShowDetailsService, private dashboardService: DashboardService) { }
   selectedShowId: number;
   showDetailsData: any;
   loader = true;
