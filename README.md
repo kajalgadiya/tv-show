@@ -1,7 +1,5 @@
 # TV Show Application
 
-# Project Description
-
 TV Show is a SPA which allows users to display few popular TV shows based on their rating and genre on a
 dashboard and when the user clicks on a TV show then the details of that TV show gets displayed on another screen.
 Also, the user can search for TV shows to get the details.
