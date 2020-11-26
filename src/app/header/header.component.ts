@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     this.showHideSearch();
     this.dashboardService.getIsSearchedFlag().subscribe(data => {
       this.hideSearch = true;
-    })
+    });
   }
 
   // show/hide toggler based on device width

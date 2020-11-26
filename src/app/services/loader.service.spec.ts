@@ -23,7 +23,7 @@ describe('LoaderService', () => {
   it('should call hide to set loader value as false', () => {
     service.isLoading.subscribe((message) => {
       expect(message).toBe(false);
-    })
+    });
     service.hide();
   });
 });

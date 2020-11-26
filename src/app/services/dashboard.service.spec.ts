@@ -29,20 +29,10 @@ describe('DashboardService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('can test HttpClient.get', () => {
-    const testUrl = 'http://api.tvmaze.com/';
-    // Make an HTTP GET request
-    httpClient.get(testUrl).subscribe(data => {
-    });
-    const req = httpTestingController.expectOne(testUrl);
-    // Assert that the request is a GET.
-    expect(req.request.method).toEqual('GET');
-  });
-
   it('should call setSearchedValue to set searchedKey value', () => {
     service.searchedKey.subscribe((message) => {
       expect(message).toBe('Thrones');
-    })
+    });
     service.setSearchedValue('Thrones');
   });
 

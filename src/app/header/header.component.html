@@ -22,7 +22,7 @@
         </ul>
         <div class="input-group " *ngIf='!hideSearch'>
             <input class="form-control" type="search" autocomplete="off" placeholder="Search TV Shows"
-                [(ngModel)]='searchedTerm' (keyup)='valueSearched($event)' id="search">
+                value='{{searchedTerm}}' (keyup)='valueSearched($event)' id="search">
             <span class="input-group-append">
                 <button class="btn btn-outline-secondary search-icon" type="button" (click)='search()'>
                     <i class="fa fa-search"></i>
