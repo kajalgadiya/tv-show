@@ -165,15 +165,6 @@ describe('DashboardComponent', () => {
     expect(data).toEqual(sortedOutput);
   });
 
-  it('should call getSearchedValue to fetch latest searched Value', fakeAsync(() => {
-    component.ngOnInit();
-    const searchedData = 'Thrones';
-    component.searchedTerm = 'Thrones';
-    spyOn(dashboardService, 'getSearchedValue').and.returnValue(of(searchedData));
-    component.triggerSearch();
-    expect(component.searchedTerm).toEqual(searchedData);
-  }));
-
   it('should get load page without any search results', fakeAsync(() => {
     component.searchedTerm = '';
     component.triggerSearch();

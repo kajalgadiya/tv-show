@@ -10,7 +10,7 @@ import { ShowDetailsService } from '../services/show-details.service';
 })
 export class ShowDetialsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private showDetailsService: ShowDetailsService, private dashboardService: DashboardService) { }
+  constructor(private route: ActivatedRoute, private showDetailsService: ShowDetailsService) { }
   selectedShowId: number;
   showDetailsData: any;
   loader = true;
@@ -21,7 +21,6 @@ export class ShowDetialsComponent implements OnInit {
     this.loader = true;
     this.selectedShowId = this.route.snapshot.params.id;
     this.loadShowsData();
-    this.dashboardService.setIsSearchedFlag(true);
   }
 
   // loads shows info based on show id
@@ -29,13 +28,13 @@ export class ShowDetialsComponent implements OnInit {
     this.showDetailsService.getTvShowsInformation(this.selectedShowId).subscribe(data => {
       this.showDetailsData = data;
       this.castDetailsData = this.showDetailsData._embedded.cast;
-      this.removeHTMLTagsFromSummary();
+      this.removeSemanticTagsFromSummary();
       this.loadShowsSeasons();
     });
   }
 
   // remove HTML Tags from summary information
-  removeHTMLTagsFromSummary(): void {
+  removeSemanticTagsFromSummary(): void {
     if (this.showDetailsData.summary !== null && this.showDetailsData.summary !== undefined) {
       this.showDetailsData.summary = this.showDetailsData.summary.replace(/(<([^>]+)>)/ig, '');
     } else {

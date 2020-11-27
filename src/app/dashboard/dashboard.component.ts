@@ -16,9 +16,9 @@ export class DashboardComponent implements OnInit {
   allGenreList: any = [];
   uniqueGenreList: any = [];
   selectedGenreTvShowsList: any = [];
-  selectedGenre;
+  selectedGenre: any;
   loadData = false;
-  searchedTerm;
+  searchedTerm: string;
   searchedTermTvShows: any = [];
   isSearched = false;
   customOptions: OwlOptions = {
@@ -34,11 +34,11 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getTvShowsData();
     this.dashboardService.getSearchedValue().subscribe(value => {
       this.searchedTerm = value;
       this.triggerSearch();
     });
+    this.getTvShowsData();
   }
 
   // get list of all tv shows fetched
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
   // create list of all genres available in tvShowsList
   getGenreInfo(): void {
-    this.tvShowsList.forEach(element => {
+    this.tvShowsList.forEach((element: { genres: any; }) => {
       this.allGenreList = this.allGenreList.concat(element.genres);
     });
     this.removeDuplicateGenre();
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   // remove all duplicate genres
   removeDuplicateGenre(): void {
-    this.uniqueGenreList = this.allGenreList.filter((item, index) => {
+    this.uniqueGenreList = this.allGenreList.filter((item: any, index: any) => {
       return this.allGenreList.indexOf(item) === index;
     });
     this.uniqueGenreList.unshift('Popular Shows');
@@ -68,13 +68,13 @@ export class DashboardComponent implements OnInit {
 
   // cretae genre and respective genre data dynamically
   genreSpecificTvShows(): void {
-    this.uniqueGenreList.forEach(genre => {
+    this.uniqueGenreList.forEach((genre: string) => {
       const genreSpecficShows = {
         genreValue: genre,
         genreData: []
       };
       if (genre !== 'Popular Shows') {
-        genreSpecficShows.genreData = this.tvShowsList.filter(data => data.genres.includes(genre));
+        genreSpecficShows.genreData = this.tvShowsList.filter((data: { genres: string | any[]; }) => data.genres.includes(genre));
         genreSpecficShows.genreData = this.descendingRatingAverage(genreSpecficShows.genreData);
       } else {
         genreSpecficShows.genreData = this.tvShowsList;
@@ -86,8 +86,8 @@ export class DashboardComponent implements OnInit {
   }
 
   // sort genre data based on average rating in descending order
-  descendingRatingAverage(data): any {
-    data.sort((value1, value2) => (value1.rating.average > value2.rating.average) ? 1 : -1);
+  descendingRatingAverage(data: any[]): any {
+    data.sort((value1: { rating: { average: number; }; }, value2: { rating: { average: number; }; }) => (value1.rating.average > value2.rating.average) ? 1 : -1);
     data = data.reverse();
     return data;
   }

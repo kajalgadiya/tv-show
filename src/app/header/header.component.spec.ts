@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { DashboardService } from '../services/dashboard.service';
 import { HeaderComponent } from './header.component';
 
@@ -10,10 +11,9 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
       providers: [DashboardService]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,7 +21,6 @@ describe('HeaderComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     dashboardService = TestBed.inject(DashboardService);
-
   });
 
   it('should create Header component', () => {
@@ -29,7 +28,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should set searched TV Show Value', () => {
-    const event = { target: { value: 'Thrones' } };
+    const event = { target: { value: 'Thrones' }, keyCode: 34 };
     fixture.componentInstance.valueSearched(event);
     expect(fixture.componentInstance.searchedTerm).toEqual('Thrones');
   });
@@ -63,6 +62,11 @@ describe('HeaderComponent', () => {
     const event = { target: { value: 'Thrones' }, keyCode: 13 };
     fixture.componentInstance.valueSearched(event);
     expect(fixture.componentInstance.searchedTerm).toEqual('Thrones');
-    expect(fixture.componentInstance.hideSearch).toEqual(false);
+  });
+
+  it('should call empty search term to set searched value as blank', () => {
+    component.searchedTerm = 'The Wire';
+    component.emptySearchedTerm();
+    expect(component.searchedTerm.trim()).toEqual('');
   });
 });

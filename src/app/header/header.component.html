@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <span (click)='showHideSearch()'>
+    <span (click)='emptySearchedTerm()'>
         <a class="navbar-brand white mleft-50" routerLink="">
             <i class="fa fa-television" aria-hidden="true"></i>
             <span> {{title}}</span>
@@ -13,14 +13,14 @@
     <div class="collapse navbar-collapse mright-50" id="navbarTogglerId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <span (click)='showHideSearch()'>
+                <span (click)='emptySearchedTerm()'>
                     <a class="navbar-brand white" routerLink="">
                         <span>Dashboard</span>
                     </a>
                 </span>
             </li>
         </ul>
-        <div class="input-group auto-width" *ngIf='!hideSearch'>
+        <div class="input-group auto-width">
             <input class="form-control" type="text" autocomplete="off" placeholder="Search TV Shows"
                 value='{{searchedTerm}}' (keyup)='valueSearched($event)' id="search">
             <span class="input-group-append">

@@ -11,11 +11,7 @@ describe('ShowDetialsComponent', () => {
   let showDetailsService: ShowDetailsService;
 
   const mockActivatedRoute = {
-    snapshot: {
-      params: {
-        id: 'showId'
-      }
-    }
+    snapshot: { params: { id: 'showId' } }
   };
 
   beforeEach(async () => {
@@ -40,11 +36,9 @@ describe('ShowDetialsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
   it('should call getTvShowsInformation and return list of showDetailsData', fakeAsync(() => {
     component.selectedShowId = 1;
-    const response: any =
-    {
+    const response: object = {
       id: 180, url: 'http://www.tvmaze.com/shows/180/firefly', name: 'Firefly',
       type: 'Scripted', language: 'English', genres: ['Drama', 'Adventure', 'Science-Fiction'],
       status: 'Ended', runtime: 60, premiered: '2002-09-20', officialSite: null,
@@ -73,7 +67,7 @@ describe('ShowDetialsComponent', () => {
 
   it('should call loadShowsSeasons and return list of seasonsDetailsData', fakeAsync(() => {
     component.selectedShowId = 10;
-    const response: any =
+    const response: object =
       [
         {
           id: 800,
@@ -111,36 +105,8 @@ describe('ShowDetialsComponent', () => {
   }));
 
   it('should set summary value for summary key not found in response', () => {
-    component.showDetailsData =
-    {
-      id: 800,
-      url: 'http://www.tvmaze.com/seasons/800/firefly-season-1',
-      number: 1,
-      name: '',
-      episodeOrder: 14,
-      premiereDate: '2002-09-20',
-      endDate: '2002-12-20',
-      network: {
-        id: 4,
-        name: 'FOX',
-        country: {
-          name: 'United States',
-          code: 'US',
-          timezone: 'America/New_York'
-        }
-      },
-      webChannel: null,
-      image: {
-        medium: 'http://static.tvmaze.com/uploads/images/medium_portrait/9/23969.jpg',
-        original: 'http://static.tvmaze.com/uploads/images/original_untouched/9/23969.jpg'
-      },
-      _links: {
-        self: {
-          href: 'http://api.tvmaze.com/seasons/800'
-        }
-      }
-    };
-    component.removeHTMLTagsFromSummary();
+    component.showDetailsData = { id: 800 }
+    component.removeSemanticTagsFromSummary();
     expect(component.showDetailsData.summary.trim()).toEqual('Summary Is unavailable.');
   });
 });

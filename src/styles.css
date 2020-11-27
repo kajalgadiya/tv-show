@@ -1,8 +1,8 @@
 .owl-theme .owl-nav .owl-next{position: absolute; width: 60px;cursor: pointer;right: -25px;top: 150px !important;
-    font-size: 24px;padding: 1.25rem .75rem !important;background: #434141 !important;
+        font-size: 24px;padding: 1.25rem .75rem !important;background: #434141 !important;
 }
 .owl-theme .owl-nav .owl-prev{position: absolute;width: 60px;cursor: pointer;left: -25px;top: 150px !important;
-    font-size: 24px;background: #434141 !important;padding: 1.25rem .75rem !important;
+        font-size: 24px;background: #434141 !important;padding: 1.25rem .75rem !important;
 }
 .owl-carousel.owl-drag .owl-item {width: 200px !important;}
 .hand{cursor: pointer;}
@@ -16,4 +16,5 @@
 .separation{margin-left:30px;margin-right:30px;}
 .zoom {transition: transform .2s; /* Animation */}
 .zoom:hover {transform: scale(1.1)};
-
+.fa-chevron-right{font-size: 15px; padding-bottom: 12px;}
+.fa-chevron-left{font-size: 22px; padding-bottom: 11px; padding-top:12px;}

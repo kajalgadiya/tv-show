@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
@@ -8,19 +9,14 @@ import { DashboardService } from '../services/dashboard.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private router: Router) { }
   title = 'TV Maze';
   searchedTerm = '';
-  hideSearch = false;
   showScrollTopBtn: boolean;
   topPositionToShowScrollBtn = 100;
   scrollPosition;
 
   ngOnInit(): void {
-    this.showHideSearch();
-    this.dashboardService.getIsSearchedFlag().subscribe(data => {
-      this.hideSearch = true;
-    });
   }
 
   // show/hide toggler based on device width
@@ -36,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // fetch searched value from input box
-  valueSearched(event): void {
+  valueSearched(event: { target: { value: string; }; keyCode: number; }): void {
     this.searchedTerm = event.target.value;
     if (event.keyCode === 13) { this.search(); }
   }
@@ -44,16 +40,15 @@ export class HeaderComponent implements OnInit {
   // set the searched key value to be fetched in dashboard page
   search(): void {
     const pathName = window.location.pathname;
-    if (pathName.includes('shows')) {
-      this.hideSearch = true;
-    } else {
+    if (pathName === '/') {
       this.dashboardService.setSearchedValue(this.searchedTerm);
-      this.hideSearch = false;
+    } else {
+      this.router.navigate(['']);
+      setTimeout(() => this.dashboardService.setSearchedValue(this.searchedTerm), 100);
     }
   }
-
   // show/hide search based on routes
-  showHideSearch(): void {
+  emptySearchedTerm(): void {
     this.searchedTerm = '';
     this.search();
   }

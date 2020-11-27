@@ -15,7 +15,7 @@
                 </div>
             </ng-container>
             <ng-container *ngIf='showDetailsData!=null || showDetailsData!=undefined'>
-                <div class="ml-10">
+                <div class="">
                     <div class="row">
                         <div class="col-sm-2 hand zoom">
                             <div *ngIf='showDetailsData.image!=null'>
@@ -51,10 +51,45 @@
             </ng-container>
         </section>
 
+        <!-- Seasons Display Section -->
+        <section class="mtop-20 mb-5">
+            <h4 class="custom-headers mtop-50">
+                <span class="popular">Seasons</span>
+            </h4>
+            <ng-container *ngIf='seasonsDetailsData.length==0'>
+                <div class="d-flex justify-content-center mt-3">
+                    <b>No Seasons Found For '{{showDetailsData.name}}'.</b>
+                </div>
+            </ng-container>
+            <ng-container *ngIf='seasonsDetailsData.length>0'>
+                <div class="col-12 ">
+                    <div class="row">
+                        <ng-container *ngFor="let seasonsData of seasonsDetailsData">
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <div class="card mtop-20 hand zoom">
+                                    <ng-container *ngIf='seasonsData.image!=null || seasonsData.image !=undefined'>
+                                        <a href="{{seasonsData.url}}" target="_blank">
+                                            <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
+                                                alt="No Preview Available">
+                                        </a>
+                                    </ng-container>
+                                    <ng-container *ngIf='seasonsData.image==null || seasonsData.image ==undefined'>
+                                        <div class="no-cast-image">
+                                            <a href="{{seasonsData.url}}" target="_blank">Image Unavailable</a>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-container>
+        </section>
+
         <!-- Cast Display Section -->
         <section class="mtop-20 mb-1">
             <h4 class="custom-headers mtop-50">
-                <span class="popular">Photos</span>
+                <span class="popular">Cast & Crew</span>
             </h4>
             <ng-container *ngIf='castDetailsData.length==0'>
                 <div class="d-flex justify-content-center mt-3">
@@ -62,11 +97,10 @@
                 </div>
             </ng-container>
             <ng-container *ngIf='castDetailsData.length>0'>
-                <!-- <div class="container dashboard"> -->
                 <div class="col-12 ">
                     <div class="row">
                         <ng-container *ngFor="let castImages of castDetailsData">
-                            <div class="col-sm-6 col-md-2">
+                            <div class="col-6 col-sm-6 col-md-2">
                                 <div class="card mtop-20 zoom">
                                     <ng-container
                                         *ngIf='castImages.person.image!=null || castImages.person.image !=undefined'>
@@ -94,44 +128,6 @@
                         </ng-container>
                     </div>
                 </div>
-                <!-- </div> -->
-            </ng-container>
-        </section>
-
-        <!-- Seasons Display Section -->
-        <section class="mtop-20 mb-5">
-            <h4 class="custom-headers mtop-50">
-                <span class="popular">Seasons</span>
-            </h4>
-            <ng-container *ngIf='seasonsDetailsData.length==0'>
-                <div class="d-flex justify-content-center mt-3">
-                    <b>No Seasons Found For '{{showDetailsData.name}}'.</b>
-                </div>
-            </ng-container>
-            <ng-container *ngIf='seasonsDetailsData.length>0'>
-                <!-- <div class="container dashboard"> -->
-                <div class="col-12 ">
-                    <div class="row">
-                        <ng-container *ngFor="let seasonsData of seasonsDetailsData">
-                            <div class="col-sm-6 col-md-2">
-                                <div class="card mtop-20 hand zoom">
-                                    <ng-container *ngIf='seasonsData.image!=null || seasonsData.image !=undefined'>
-                                        <a href="{{seasonsData.url}}" target="_blank">
-                                            <img class="card-img-top img-photos" [src]="seasonsData.image.medium"
-                                                alt="No Preview Available">
-                                        </a>
-                                    </ng-container>
-                                    <ng-container *ngIf='seasonsData.image==null || seasonsData.image ==undefined'>
-                                        <div class="no-cast-image">
-                                            <a href="{{seasonsData.url}}" target="_blank">Image Unavailable</a>
-                                        </div>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>
-                <!-- </div> -->
             </ng-container>
         </section>
     </div>
