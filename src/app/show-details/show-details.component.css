@@ -1,4 +1,4 @@
-.card-overflow{max-height: 160px;overflow: auto;}
+.card-overflow{max-height: 120px;overflow: auto;}
 .no-preview{border:1px solid rgba(0,0,0,.125);position: relative;width: 100%;
  display: flex;align-items: center;;text-align:center;border-radius: 5px;
  height: 295px;max-height: 295px;}
