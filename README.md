@@ -4,12 +4,16 @@ TV Show is a SPA which allows users to display few popular TV shows based on the
 dashboard and when the user clicks on a TV show then the details of that TV show gets displayed on another screen.
 Also, the user can search for TV shows to get the details.
 
+## PreRequisites
+- Node.js
+
 ## Technologies Used
 
 - Angular 10
 - HTML5
 - CSS3
 - Bootstrap 4
+- ES6
 
 ## Installation of angular/cli
 

@@ -9,7 +9,6 @@ describe('ShowDetialsComponent', () => {
   let component: ShowDetialsComponent;
   let fixture: ComponentFixture<ShowDetialsComponent>;
   let showDetailsService: ShowDetailsService;
-
   const mockActivatedRoute = {
     snapshot: { params: { id: 'showId' } }
   };
@@ -23,9 +22,6 @@ describe('ShowDetialsComponent', () => {
         ShowDetailsService],
     })
       .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(ShowDetialsComponent);
     component = fixture.componentInstance;
     showDetailsService = TestBed.inject(ShowDetailsService);
@@ -105,7 +101,7 @@ describe('ShowDetialsComponent', () => {
   }));
 
   it('should set summary value for summary key not found in response', () => {
-    component.showDetailsData = { id: 800 }
+    component.showDetailsData = { id: 800 };
     component.removeSemanticTagsFromSummary();
     expect(component.showDetailsData.summary.trim()).toEqual('Summary Is unavailable.');
   });

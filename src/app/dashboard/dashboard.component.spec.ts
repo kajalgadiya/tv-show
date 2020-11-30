@@ -15,11 +15,7 @@ describe('DashboardComponent', () => {
       declarations: [DashboardComponent],
       imports: [HttpClientTestingModule, RouterModule.forRoot([])],
       providers: [DashboardService],
-    })
-      .compileComponents();
-  });
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     dashboardService = TestBed.inject(DashboardService);
@@ -88,7 +84,7 @@ describe('DashboardComponent', () => {
         }
       }];
     spyOn(dashboardService, 'getTvShowsInformation').and.returnValue(of(response));
-    component.getTvShowsData();
+    component.fetchTvShowsList();
     expect(component.tvShowsList).toEqual(response);
   }));
 
@@ -158,7 +154,7 @@ describe('DashboardComponent', () => {
     expect(component.loadData).toEqual(true);
   }));
 
-  it('sorts average rating in descending order', () => {
+  it('should sort average rating in descending order', () => {
     const data = [{ rating: { average: 2 } }, { rating: { average: 9 } }, { rating: { average: 5 } }, { rating: { average: 8 } }];
     component.descendingRatingAverage(data);
     const sortedOutput = [{ rating: { average: 9 } }, { rating: { average: 8 } }, { rating: { average: 5 } }, { rating: { average: 2 } }];
@@ -169,10 +165,7 @@ describe('DashboardComponent', () => {
     component.searchedTerm = '';
     component.triggerSearch();
     tick(500);
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(component.isSearched).toEqual(false);
-      expect(component.loadData).toBe(true);
-    });
+    expect(component.isSearched).toEqual(false);
+    expect(component.loadData).toBe(true);
   }));
 });

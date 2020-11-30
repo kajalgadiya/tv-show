@@ -8,19 +8,17 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let dashboardService: DashboardService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [HttpClientTestingModule, RouterModule.forRoot([])],
       providers: [DashboardService]
     }).compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     dashboardService = TestBed.inject(DashboardService);
+    fixture.detectChanges();
   });
 
   it('should create Header component', () => {

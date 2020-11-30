@@ -38,31 +38,28 @@ export class DashboardComponent implements OnInit {
       this.searchedTerm = value;
       this.triggerSearch();
     });
-    this.getTvShowsData();
+    this.fetchTvShowsList();
   }
 
   // get list of all tv shows fetched
-  getTvShowsData(): void {
+  fetchTvShowsList(): void {
     this.dashboardService.getTvShowsInformation().subscribe(data => {
       this.tvShowsList = data;
-      this.getGenreInfo();
+      this.generateGenreInfoList();
     });
   }
 
   // create list of all genres available in tvShowsList
-  getGenreInfo(): void {
+  generateGenreInfoList(): void {
     this.tvShowsList.forEach((element: { genres: any; }) => {
-      this.allGenreList = this.allGenreList.concat(element.genres);
+      this.allGenreList = [...this.allGenreList, ...element.genres];
     });
     this.removeDuplicateGenre();
   }
 
   // remove all duplicate genres
   removeDuplicateGenre(): void {
-    this.uniqueGenreList = this.allGenreList.filter((item: any, index: any) => {
-      return this.allGenreList.indexOf(item) === index;
-    });
-    this.uniqueGenreList.unshift('Popular Shows');
+    this.uniqueGenreList = ['Popular Shows', ...new Set(this.allGenreList)];
     this.genreSpecificTvShows();
   }
 
